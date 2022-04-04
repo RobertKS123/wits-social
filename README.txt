@@ -33,6 +33,9 @@ https://react-icons.github.io/react-icons/icons?name=fa
 React with Php
 https://www.geeksforgeeks.org/how-to-connect-reactjs-as-a-front-end-with-php-as-a-back-end/
 
+Good Place to start codeing from 
+https://www.youtube.com/watch?v=uvB4cUi4RrI&ab_channel=edutechional
+
 Things that need to happen first
 - Navbar 
 - login page
