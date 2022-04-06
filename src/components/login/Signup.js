@@ -26,7 +26,6 @@ const Signup = () => {
         setSuccess(true);
     }
 
-
     return (
         <>
             {success ? (
