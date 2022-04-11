@@ -24,3 +24,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+repo_token: HqvvMGz9xoSRO55uBVyoWlApImviYkOuE
