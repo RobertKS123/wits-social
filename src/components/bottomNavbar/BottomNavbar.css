@@ -1,0 +1,43 @@
+    .bottomNavbar{
+        position: absolute;
+        bottom: 0;
+        background-color: #060b26;
+        height: 60px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-align: right;
+        width: 100%;
+    }
+
+    .bottom-nav-menu {
+        list-style-type: none;
+        padding: 0;
+        overflow: hidden;
+        display: inline;
+        margin: auto;
+        white-space: nowrap;
+    }
+
+    .bottom-nav-item {
+        float: left;
+        size: 20px;
+        white-space: nowrap;
+    }
+
+    .bottom-nav-item a {
+        display: block;
+        color: white;
+        text-align: center;
+        align-self: center;
+        padding: 10px;        
+        text-decoration: none;
+    }
+
+    .nav-icon{
+        
+    }
+
+    .bottom-nav-item a:hover{
+        background-color: #1a83ff;        
+    }

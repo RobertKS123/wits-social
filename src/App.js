@@ -5,16 +5,18 @@ import Home from './pages/home/Home';
 import Signup from './components/login/Signup';
 import Account from './pages/account/manage/ManageAccount';
 import Login from './components/login/Login';
+import BottomNavbar from './components/bottomNavbar/BottomNavbar';
 
 function App() {
   return (
-    <>
+    <>  
       <Router>
-        <Navbar />
+        <BottomNavbar/>
           <Route path='/' exact component={Home}/>
           <Route path='/signup' exact  component={Signup}/>
           <Route path='/account' exact component={Account}/>
       </Router>
+      
     </>
   );
 }
