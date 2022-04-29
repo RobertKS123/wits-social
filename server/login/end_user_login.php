@@ -1,8 +1,17 @@
 <?php
 
 /*  
-    
-    What the file does?
+    Script URL:
+	https://startechies.000webhostapp.com/server/login/end_user_login.php
+	
+
+	Parameters that must be sent in the url request:
+	
+	- A parameter with name "email" which the user supplies on login.
+    - A parameter with name "password" which the user supplies on login.
+
+	
+	What the file does?
     
     - Outputs a json object as follows: {"login":x, "user_id":y}
     - If the login is invalid, then x = invalid_login and y = not_defined

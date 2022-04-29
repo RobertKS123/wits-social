@@ -2,8 +2,18 @@
 
     
 /*  
+	Script URL:
+	https://startechies.000webhostapp.com/server/signup/end_user_signup.php
+	
+
+	Parameters that must be sent in the url request:
+	
+	- A parameter with name "email" which the user supplies on registration.
+	- A parameter with name "pwd" which the user supplies on registration.
+	- A parameter with name "username" which the user supplies on registration.
     
-    What the file does?
+    
+	What the file does?
     
     - Outputs a JSON object in the following format: {"email_availability":x,"username_availability":y,"user_unique_id":z,"registration_outcome":a}
     - If the email is not available, then x = "not_available". If the email is available, then x = "available"
@@ -11,6 +21,8 @@
     - Registration is a success if a = "success". Registration is a failure if a = "failure"
     - If the registration is a failure, then z = "not_defined". If the registration is a success, then z will return the user unique id for use somewhere else in application
     - Last Note: The registration is only successful if both x and y are available.
+
+	
     
     
     
