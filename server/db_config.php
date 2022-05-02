@@ -1,6 +1,7 @@
 <?php
 
 //This file must be required_once in all php files that need to access the database
+header('Access-Control-Allow-Origin: *');
 
 //Details hidden because of pub;ic github repo
 $username = "hidden";
