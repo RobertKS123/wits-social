@@ -1,19 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Lato', sans-serif;
-}
-body {
-    font-family: sans-serif;
-    margin: 3rem;
-    background-color: #ffffff;
   }
   
-  h1, h2 {
+  body {
+    font-family: sans-serif;
+    margin: 3rem;
+    background-color: #dfdfdf;
+  }
+  
+  h1, h2, h3 {
     color: #333333;
+    margin: 0 auto;
     text-align: center;
   }
   
@@ -47,17 +44,7 @@ body {
     border-radius: 4px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     padding: 1rem;
-    width: 40rem;
-  }
-
-  .main_card {
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    padding: 1rem;
-    width: 73rem;
-    height: 650px;
-    overflow-y: scroll;
+    width: 20rem;
   }
   
   .actions {
