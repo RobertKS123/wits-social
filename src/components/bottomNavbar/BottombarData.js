@@ -25,6 +25,12 @@ export const BottombarData = [
         cName: 'nav-text'     
     },
     {
+        title: 'LandingPage',
+        path: '/landing_page',
+        icon: <BiIcons.BiLogIn />,
+        cName: 'nav-text'     
+    },
+    {
         title: 'Account',
         path: '/account',
         icon: <MdIcons.MdManageAccounts />,

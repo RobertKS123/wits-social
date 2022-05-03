@@ -4,29 +4,20 @@ import { useEffect, useState } from "react";
 //import "./App.css";
 //import axios from "axios";
 //import { Link } from "react-router-dom";
+import './Home.css';
 
 function Home() {
-    
-    // const [users, setUsers] = useState([]);
-    // useEffect(() => {
-    //     getUsers();
-    // }, []);
-    // function getUsers() {
-    //     axios.get('https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_list.php/').then(function(response) {
-    //         console.log(response.data);
-    //         setUsers(response.data);
-    //     });
-    // }
 
-    function json2array(json_1){
+    function json2array(json_1_){
       var result = [];
-      var keys = Object.keys(json_1);
+      var keys = Object.keys(json_1_);
       keys.forEach(function(key){
-          result.push(json_1[key]);
+          result.push(json_1_[key]);
       });
       return result;
     }
 
+    
     let json_1;
 
     const [users, setUsers] = useState([]);
@@ -39,68 +30,85 @@ function Home() {
         .then((out) => {
         
         json_1 = JSON.stringify(out);
-
-        //setUsers(json_1.split(','));
-
+        
+        const practice_array = [];
+       
         const  jsonParsedArray = JSON.parse(json_1);
+        
+
         for ( var key in jsonParsedArray) {
-          // if (jsonParsedArray.hasOwnProperty(key)) {
-          //   setUsers("% "+key + " = " + jsonParsedArray[key]);
-          // }
+          
           if(jsonParsedArray[key]instanceof Object){
-            setUsers(jsonParsedArray[key]);
+            //console.log("HERE ", jsonParsedArray[key]);
+            practice_array.push(jsonParsedArray[key]);
           }
+          
         }
 
-        //console.log('Checkout this JSON! ', json_1);
+        if(practice_array.length != 0){
+          setUsers(practice_array);
+        }
+
 
         })
         .catch(err => { throw err });
     }, []);
     
-    const array_json = json2array(users);
-    
+    const total_practice_array = [];
 
-    function createPodcastSquares(num){
-      
-      var real_num = num / 13;
-      var iter_num = 0;
-      for (var i = 0; i < real_num; i++){
-        
-        iter_num = iter_num + 1;
-      {/*  for any array_json[iter_num] - remember to minus 1 */}
 
-        return(
-          <Podcast 
-            podcast_title = {array_json[iter_num]}
-            podcast_description =  {array_json[iter_num + 1]}
-            podcast_audio = {array_json[iter_num + 2]}
-            podcast_likes = {array_json[iter_num + 3]}
-            podcast_username = {array_json[iter_num + 9]}
-            
-          />
-          
-        );
+     for (var i = 0; i < users.length; i++){
+        total_practice_array.push(json2array(users[i]));
+     }
 
-        
+    const array_json = total_practice_array;
+
+    function createPodcastSquares_2(array){
+
+      if (array.length == 0){
+        return;
       }
-    }
-    
-  return (
-      
-    <div> 
-        {/* <div> 
-            {useEffect()}
-        </div> */}
-      
+      else{
+        var final_array = [];
 
+        for (var i = 0; i < array.length; i++){
+          const new_array = array[i];
+          final_array.push(
+           <Podcast 
+             podcast_title = {new_array[1]}
+             podcast_description =  {new_array[2]}
+             podcast_audio = {new_array[3]}
+             podcast_likes = {new_array[4]}
+             podcast_username = {new_array[10]}
+           />
+          )
+        }
+        //console.log("VSIZE OF FINAL_ARRAY is =", final_array.length);
+        return(final_array);
+      }
+      
+      
+    }
+
+  return (
+    <div> 
+        
       <h1> YOUR 'FOR-YOU' PODCAST PAGE </h1>
 
-    
-        
       <div className="main_card" >
         
-        {/* 
+        {/* {createPodcastSquares(array_json, array_json.length)} */}
+        {createPodcastSquares_2(array_json)}
+      
+      </div>
+    </div>
+    
+  );
+}
+
+export default Home; 
+
+{/* 
         array_json[0] = Podcast_ID
         array_json[1] = Podcast_Title
         array_json[2] = Podcast_Description
@@ -116,13 +124,46 @@ function Home() {
         array_json[12] = EndUser_BannerLink 
         */}
 
-
-        {createPodcastSquares(array_json.length)}
-      
-      </div>
-    </div>
+        {/* function createPodcastSquares(array, num){
+            
+          if (num == 0){
+            return;
+          }
+          var real_num = num / 13;
     
-  );
-}
+          for (var i = 0; i < real_num; i++){ 
+                  
+            //iter_num = iter_num + 1;
+                    
+            for any array_json[iter_num] - remember to minus 1
+          
+            return(
+              <Podcast 
+                podcast_title = {array[1]}
+                podcast_description =  {array[2]}
+                podcast_audio = {array[3]}
+                podcast_likes = {array[4]}
+                podcast_username = {array[10]}
+              />
+            );
+          }
+        }
+        */ }
 
-export default Home; 
+        {/*else{
+          for (var i = 0; i < array.length; i++){
+            const new_array = array[i];
+            console.log("VALUE OF i IS = ", i);
+            return(
+              <Podcast 
+                podcast_title = {new_array[1]}
+                podcast_description =  {new_array[2]}
+                podcast_audio = {new_array[3]}
+                podcast_likes = {new_array[4]}
+                podcast_username = {new_array[10]}
+              />
+            );
+            
+          }
+        }
+      */}

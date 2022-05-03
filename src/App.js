@@ -6,17 +6,21 @@ import Signup from './components/login/Signup';
 import Account from './pages/account/manage/ManageAccount';
 import Login from './components/login/Login';
 import BottomNavbar from './components/bottomNavbar/BottomNavbar';
+import LandingPage from './pages/landing_page/LandingPage';
 
 function App() {
   return (
-    <>  
+    <>
       <Router>
         <BottomNavbar/>
           <Route path='/' exact component={Home}/>
           <Route path='/signup' exact  component={Signup}/>
+          {/* <Route path='/login' exact  component={Login}/> */}
           <Route path='/account' exact component={Account}/>
+          <Route path='/landing_page' exact component={LandingPage}/>
+        
       </Router>
-      
+
     </>
   );
 }

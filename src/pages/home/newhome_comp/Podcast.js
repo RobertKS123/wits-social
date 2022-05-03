@@ -33,17 +33,22 @@ function Podcast(props) {
                                       You indicate that you are uisng {} to show that it is a javascript expression */}
             <br />
             <h3> User: {props.podcast_username}</h3>
+            <br />
             <h4> Description : {props.podcast_description} </h4> 
             <div className="actions"> 
             <br />
             <button className="btn" onClick={playAudio(props.podcast_audio)} > PLAY </button>
-            <br />
-            {/* <span> Click this when you like an audio : </span> */}
-            <button className="btn" onClick={deleteHandler} > LIKES = {props.podcast_likes} </button> {/* you can't have deletehandler() bevcause this means that the fnction will operate wehn we get to this code not when we click the button */}
+            <br className='br_main'/>
+            <br className='br_main'/>
+            
+            <button className="btn" backgr> LIKES  </button>
+            {/* <button className="btn" onClick={} > LIKES  </button>  */}
+            {/* you can't have deletehandler() bevcause this means that the fnction will operate wehn we get to this code not when we click the button */}
+            <span> {props.podcast_likes} </span>
             </div>
             
-            { modalIsOpen ? <Modal onCancel={closeModalHandler} onConfirm={closeModalHandler}/> : null} {/* if modal is open is ture, go to modal file, else do nothing*/}                          
-            { modalIsOpen ? <Backdrop onCancel = {closeModalHandler}/> : null}
+            {/* { modalIsOpen ? <Modal onCancel={closeModalHandler} onConfirm={closeModalHandler}/> : null} {/* if modal is open is ture, go to modal file, else do nothing*                         
+            { modalIsOpen ? <Backdrop onCancel = {closeModalHandler}/> : null} */}
 
       </div>
     )

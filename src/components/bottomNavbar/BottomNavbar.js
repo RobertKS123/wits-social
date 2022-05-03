@@ -4,6 +4,7 @@ import * as AiIcons from 'react-icons/ai';
 import * as BiIcons from 'react-icons/bi';
 import * as MdIcons from 'react-icons/md';
 import './BottomNavbar.css';
+//import LandingPage from './Backdrop';
 
 function BottomNavbar(){
     return(
@@ -20,10 +21,10 @@ function BottomNavbar(){
                     </div>
                 </li>
                 <li className="bottom-nav-item">
-                    <Link to='/login'>
+                    <Link to='/landing_page'>
                         <BiIcons.BiLogIn/>
                         <br/>
-                        <span>Login</span>
+                        <span>Landing Page</span>
                     </Link>
                 </li>
                 <li className="bottom-nav-item">
