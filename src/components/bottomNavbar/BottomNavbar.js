@@ -13,10 +13,9 @@ function BottomNavbar(){
                 <li className="bottom-nav-item">
                     <div className="nav-icon">
                         <Link to='/'>
-                            <AiIcons.AiFillHome />
-                            <br/>
-                            <span>Home</span>
-                        </Link>
+                            <AiIcons.AiFillHome />                           
+                            <p>Home</p>                      
+                        </Link>                        
                     </div>
                 </li>
                 <li className="bottom-nav-item">
