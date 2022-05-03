@@ -14,6 +14,7 @@ function App() {
         <BottomNavbar/>
           <Route path='/' exact component={Home}/>
           <Route path='/signup' exact  component={Signup}/>
+          <Route path='/login' exact  component={Login}/>
           <Route path='/account' exact component={Account}/>
       </Router>
       
