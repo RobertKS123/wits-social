@@ -9,30 +9,30 @@ export const BottombarData = [
         title: 'Home',
         path: '/',
         icon: <AiIcons.AiFillHome />,
-        cName: 'nav-text'
+        cName: 'bottom-nav-item'
     },
     {
         title: 'Trending',
         path: '/trending',
         icon: <HiIcons.HiTrendingUp />,
-        cName: 'nav-text'     
+        cName: 'bottom-nav-item'     
     },
     {
         title: 'Create',
         path: '/create',
         icon: <BsIcons.BsPlusCircle />,
-        cName: 'nav-text'     
+        cName: 'bottom-nav-item'     
     },
     {
-        title: 'Create',
-        path: '/create',
+        title: 'Inbox',
+        path: '/inbox',
         icon: <HiIcons.HiOutlineInboxIn />,
-        cName: 'nav-text' 
+        cName: 'bottom-nav-item' 
     },
     {
         title: 'Account',
         path: '/account',
         icon: <MdIcons.MdManageAccounts />,
-        cName: 'nav-text'     
+        cName: 'bottom-nav-item'     
     }
 ]

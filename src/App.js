@@ -8,18 +8,18 @@ import Login from './components/login/Login';
 import BottomNavbar from './components/bottomNavbar/BottomNavbar';
 
 function App() {
-  return (
-    <>  
-      <Router>
-        <BottomNavbar/>
-          <Route path='/' exact component={Home}/>
-          <Route path='/signup' exact  component={Signup}/>
-          <Route path='/login' exact  component={Login}/>
-          <Route path='/account' exact component={Account}/>
-      </Router>
-      
-    </>
-  );
+return (
+	<>  
+		<Router>
+		<BottomNavbar/>
+			<Route path='/' exact component={Home}/>
+			<Route path='/trending' exact  component={Signup}/>
+			{/* <Route path='/create' exact  component={Create}/> */}
+			<Route path='/inbox' exact  component={Login}/>
+			<Route path='/account' exact component={Account}/>
+		</Router>     
+	</>
+);
 }
 
 export default App;
