@@ -4,18 +4,26 @@
     Script URL:
 	https://startechies.000webhostapp.com/server/login/end_user_login.php
 	
-
+	
 	Parameters that must be sent in the url request:
 	
 	- A parameter with name "email" which the user supplies on login.
     - A parameter with name "password" which the user supplies on login.
 
-	
-	What the file does?
+    
+    What the file does?
     
     - Outputs a json object as follows: {"login":x, "user_id":y}
     - If the login is invalid, then x = invalid_login and y = not_defined
     - If the login is valid, then x = valid_login and y will be the unique user id.
+    - The purpose of returning the unique user id on a successful login is for its use in other parts
+      of the application.
+      
+    What the file does? (Revised for Robert) - Valid login returns number 300 instead of string "valid_login" and Invalid login returns number 301 instead of string "invalid_login"
+    
+    - Outputs a json object as follows: {"login":x, "user_id":y}
+    - If the login is invalid, then x = 301 and y = "not_defined"
+    - If the login is valid, then x = 300 and y will be the unique user id.
     - The purpose of returning the unique user id on a successful login is for its use in other parts
       of the application.
     
@@ -54,7 +62,10 @@ $doesUserExistResultSet = mysqli_stmt_get_result($prepState);
 //Check to see if result set is empty, this would imply user doesnt exist.
 if(mysqli_num_rows($doesUserExistResultSet)==0){
 	//User does not exist in database
-	$response_data = array('login' => "invalid_login", 'user_id' => "not_defined");
+	
+	//Commented out and changed for robert:
+	//$response_data = array('login' => "invalid_login", 'user_id' => "not_defined");
+	$response_data = array('login' => 301, 'user_id' => "not_defined");
 	
 	//Only commented out for sprint 1
 	echo json_encode($response_data);
@@ -95,7 +106,10 @@ else{
 	    while ($row = mysqli_fetch_assoc($result_setUserID)){
 			 $user_unique_id = $row["EndUser_ID"];
 	    }
-	    $response_data = array('login' => "valid_login", 'user_id' => $user_unique_id);
+	    
+	    //Commented out and changed for robert:
+	    //$response_data = array('login' => "valid_login", 'user_id' => $user_unique_id);
+	    $response_data = array('login' => 300, 'user_id' => $user_unique_id);
 	    
 	    //Only commented out for sprint 1
 	    echo json_encode($response_data);
@@ -105,7 +119,9 @@ else{
 	}
 	else{
 	    //Invalid login
-	    $response_data = array('login' => "invalid_login", 'user_id' => "not_defined");
+	    //Commented out and changed for robert:
+	    //$response_data = array('login' => "invalid_login", 'user_id' => "not_defined");
+	    $response_data = array('login' => 301, 'user_id' => "not_defined");
 	    
 	    //Only commented out for sprint 1
 	    echo json_encode($response_data);
