@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    color: #fff;
+}
+
+body {
+    min-height: 80vh;
+    background-color: white;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    padding: 1rem 0.5rem;
+}
+
+section {
+    width: 100%;
+    max-width: 420px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    background-color: white;
+    color: #015958;
+}
+
+section a {
+    color: #015958;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+
+.input-container{
+    margin-top: 10px;
+    background-color: #0CABA8;
+    padding: 0.25rem;
+    border-radius: 25px;
+    color: white;
+    white-space: nowrap;
+}
+
+a, a:visited {
+    color: #fff;
+}
+
+.input-icon {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #015958;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+button,
+textarea {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    padding: 0.25rem;
+    background-color: #0CABA8;
+    border-style: none;
+    color: white;
+    width: 70%;
+    
+}
+
+label,
+button {
+    margin-top: 1rem;
+    border-radius: 25px;
+    align-self: center;
+}
+
+button {
+    padding: 0.5rem;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions > svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: #015958;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.invalid {
+    color: #015958;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.line {
+    display: inline-block;   
+    align-content: center;
+}
+
+.line a{
+    color: #015958;
+}
+
+::placeholder{
+    color: white;
+}

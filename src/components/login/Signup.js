@@ -1,6 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as MdIcons from 'react-icons/md';
+import * as BsIcons from 'react-icons/bs';
+import * as RiIcons from 'react-icons/ri';
 import axios from 'axios';
 import './Signup.css';
 
@@ -81,9 +84,9 @@ const Signup = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
-            } else if (err.response?.username_availability === "not_available") {
+            } else if (err.response?.username_availability === 301) {
                 setErrMsg('Username Taken');
-            } else if (err.response?.email_availability === "not_available") {
+            } else if (err.response?.email_availability === 301) {
                 setErrMsg('Email Taken');
             } else {
                 setErrMsg('Registration Failed')
@@ -105,24 +108,25 @@ const Signup = () => {
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Register</h1>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">
-                            Username:
+                        <div className='input-container'>
+                            <BsIcons.BsFillPersonFill className='input-icon'/>
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder='User Name'
+                                ref={userRef}
+                                autoComplete="off"
+                                onChange={(e) => setUser(e.target.value)}
+                                value={user}
+                                required
+                                aria-invalid={validName ? "false" : "true"}
+                                aria-describedby="uidnote"
+                                onFocus={() => setUserFocus(true)}
+                                onBlur={() => setUserFocus(false)}
+                            />
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
-                        </label>
-                        <input
-                            type="text"
-                            id="username"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
-                            required
-                            aria-invalid={validName ? "false" : "true"}
-                            aria-describedby="uidnote"
-                            onFocus={() => setUserFocus(true)}
-                            onBlur={() => setUserFocus(false)}
-                        />
+                        </div>
                         <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             4 to 24 characters.<br />
@@ -130,23 +134,24 @@ const Signup = () => {
                             Letters, numbers, underscores, hyphens allowed.
                         </p>
 
-                        <label htmlFor="email">
-                            Email:
+                        <div className='input-container'>
+                            <MdIcons.MdOutlineMailOutline className='input-icon'/>
+                            <input
+                                type="email"
+                                id="email"
+                                autoComplete="off"
+                                placeholder='Email Adress'
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
+                                required
+                                aria-invalid={validEmail ? "false" : "true"}
+                                aria-describedby="uidnote"
+                                onFocus={() => setEmailFocus(true)}
+                                onBlur={() => setEmailFocus(false)}
+                            />
                             <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            autoComplete="off"
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                            required
-                            aria-invalid={validEmail ? "false" : "true"}
-                            aria-describedby="uidnote"
-                            onFocus={() => setEmailFocus(true)}
-                            onBlur={() => setEmailFocus(false)}
-                        />
+                        </div>
                         <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             4 to 24 characters.<br />
@@ -154,22 +159,23 @@ const Signup = () => {
                             Letters, numbers, underscores, hyphens allowed.
                         </p>
 
-                        <label htmlFor="password">
-                            Password:
+                        <div className='input-container'>
+                            <RiIcons.RiLockPasswordLine className='input-icon'/>
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder='Password'
+                                onChange={(e) => setPwd(e.target.value)}
+                                value={pwd}
+                                required
+                                aria-invalid={validPwd ? "false" : "true"}
+                                aria-describedby="pwdnote"
+                                onFocus={() => setPwdFocus(true)}
+                                onBlur={() => setPwdFocus(false)}
+                            />
                             <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                            aria-invalid={validPwd ? "false" : "true"}
-                            aria-describedby="pwdnote"
-                            onFocus={() => setPwdFocus(true)}
-                            onBlur={() => setPwdFocus(false)}
-                        />
+                        </div>
                         <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             8 to 24 characters.<br />
@@ -177,22 +183,23 @@ const Signup = () => {
                             Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                         </p>
 
-                        <label htmlFor="confirm_pwd">
-                            Confirm Password:
+                        <div className='input-container'>
+                            <RiIcons.RiLockPasswordLine className='input-icon'/>
+                            <input
+                                type="password"
+                                id="confirm_pwd"
+                                placeholder='Confirm Password'
+                                onChange={(e) => setMatchPwd(e.target.value)}
+                                value={matchPwd}
+                                required
+                                aria-invalid={validMatch ? "false" : "true"}
+                                aria-describedby="confirmnote"
+                                onFocus={() => setMatchFocus(true)}
+                                onBlur={() => setMatchFocus(false)}
+                            />
                             <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
                             <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
-                        </label>
-                        <input
-                            type="password"
-                            id="confirm_pwd"
-                            onChange={(e) => setMatchPwd(e.target.value)}
-                            value={matchPwd}
-                            required
-                            aria-invalid={validMatch ? "false" : "true"}
-                            aria-describedby="confirmnote"
-                            onFocus={() => setMatchFocus(true)}
-                            onBlur={() => setMatchFocus(false)}
-                        />
+                        </div>
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
@@ -200,13 +207,15 @@ const Signup = () => {
 
                         <button disabled={!validName || !validEmail || !validPwd || !validMatch ? true : false}>Sign Up</button>
                     </form>
-                    <p>
-                        Already registered?<br />
-                        <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign In</a>
-                        </span>
-                    </p>
+                    <div className='singin-link'>
+                        <p>
+                            Already registered?<br />
+                            <span className="line">
+                                {/*put router link here*/}
+                                <a href="#">Sign In</a>
+                            </span>
+                        </p>
+                    </div>
                 </section>
             )}
         </>
