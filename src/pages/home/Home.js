@@ -80,6 +80,7 @@ function Home() {
              podcast_audio = {new_array[3]}
              podcast_likes = {new_array[4]}
              podcast_username = {new_array[10]}
+             podcast_back_image = {new_array[12]}
            />
           )
         }
