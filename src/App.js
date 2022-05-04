@@ -13,10 +13,12 @@ return (
 		<Router>
 		<BottomNavbar/>
 			<Route path='/' exact component={Home}/>
-			<Route path='/trending' exact  component={Signup}/>
-			{/* <Route path='/create' exact  component={Create}/> */}
-			<Route path='/inbox' exact  component={Login}/>
+			{/* <Route path='/trending' exact component={Treanding}/>
+			<Route path='/create' exact  component={Create}/>
+			<Route path ='/inbox' exact component={Inbox}/> */}
 			<Route path='/account' exact component={Account}/>
+			<Route path='/signup' exact  component={Signup}/>
+			<Route path='/login' exact  component={Login}/>
 		</Router>     
 	</>
 );
