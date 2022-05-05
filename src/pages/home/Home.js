@@ -1,10 +1,12 @@
-import Podcast from './newhome_comp/Podcast';
 import { useEffect, useState } from "react";
 //import $ from "jquery";
 //import "./App.css";
 //import axios from "axios";
 //import { Link } from "react-router-dom";
-import './Home.css';
+//import './Home.css';
+import TopForYou from "./TopForYou/TopForYou";
+import Podcast from "../Podcast/Podcast";
+import GetFunction from "./GetFunction";
 
 function Home() {
 
@@ -24,39 +26,27 @@ function Home() {
 
     useEffect(() => {
         let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_list.php/';
-
         fetch(url)
         .then(res => res.json())
         .then((out) => {
-        
-        json_1 = JSON.stringify(out);
-        
-        const practice_array = [];
-       
-        const  jsonParsedArray = JSON.parse(json_1);
-        
-
-        for ( var key in jsonParsedArray) {
+          json_1 = JSON.stringify(out);
+          const practice_array = [];
+          const  jsonParsedArray = JSON.parse(json_1);
           
-          if(jsonParsedArray[key]instanceof Object){
-            //console.log("HERE ", jsonParsedArray[key]);
-            practice_array.push(jsonParsedArray[key]);
+          for ( var key in jsonParsedArray) {
+            if(jsonParsedArray[key]instanceof Object){
+              practice_array.push(jsonParsedArray[key]);
+            }
           }
-          
-        }
 
-        if(practice_array.length != 0){
-          setUsers(practice_array);
-        }
-
-
+          if(practice_array.length != 0){
+            setUsers(practice_array);
+          }
         })
         .catch(err => { throw err });
     }, []);
     
     const total_practice_array = [];
-
-
      for (var i = 0; i < users.length; i++){
         total_practice_array.push(json2array(users[i]));
      }
@@ -64,7 +54,6 @@ function Home() {
     const array_json = total_practice_array;
 
     function createPodcastSquares_2(array){
-
       if (array.length == 0){
         return;
       }
@@ -80,30 +69,48 @@ function Home() {
              podcast_audio = {new_array[3]}
              podcast_likes = {new_array[4]}
              podcast_username = {new_array[10]}
+             podcast_profile_image = {new_array[11]}
              podcast_back_image = {new_array[12]}
            />
           )
         }
-        //console.log("VSIZE OF FINAL_ARRAY is =", final_array.length);
         return(final_array);
       }
-      
-      
     }
 
-  return (
-    <div> 
-        
-      <h1> YOUR 'FOR-YOU' PODCAST PAGE </h1>
+    function createCommentBlocks(array){
+      if (array.length == 0){
+        return;
+      }
+      else{
+        var final_array = [];
 
-      <div className="main_card" >
+        for (var i = 0; i < array.length; i++){
+          const new_array = array[i];
+          final_array.push(
+           <Podcast 
+             podcast_title = {new_array[1]}
+             podcast_description =  {new_array[2]}
+             podcast_audio = {new_array[3]}
+             podcast_likes = {new_array[4]}
+             podcast_username = {new_array[10]}
+             podcast_profile_image = {new_array[11]}
+             podcast_back_image = {new_array[12]}
+           />
+          )
+        }
+        return(final_array);
+      }
+    }
+
+  return ( 
+    <div className="main_card">
         
-        {/* {createPodcastSquares(array_json, array_json.length)} */}
-        {createPodcastSquares_2(array_json)}
-      
-      </div>
+        <div className="container-fluid bg-dark">
+          {createPodcastSquares_2(array_json)}
+        </div>
     </div>
-    
+    //{createPodcastSquares_2(array_json)}
   );
 }
 

@@ -12,13 +12,11 @@ function BottomNavbar(){
         <div className="bottomNavbar">
             <ul className='bottom-nav-menu'>
                 <li className="bottom-nav-item">
-                    <div className="nav-icon">
                         <Link to='/'>
                             <AiIcons.AiFillHome />
                             <br/>
                             <span>Home</span>
                         </Link>
-                    </div>
                 </li>
                 <li className="bottom-nav-item">
                     <Link to='/landing_page'>
