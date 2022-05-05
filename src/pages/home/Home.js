@@ -1,13 +1,22 @@
-import React from 'react'
+import React from "react";
+
+import TopForYou from "./TopForYou";
+import Podcast from "../Podcast/Podcast";
+
 
 function Home() {
-    return (
-        <div className='home'>
-            <h1>
-                this where is the Home page goes
-            </h1>
+    return <>
+        <div className="bg-dark">
+        <TopForYou/>
+        <div className="container-fluid bg-dark">
+            <Podcast/>
+            <Podcast/>
+            <Podcast/>
+            <Podcast/>
         </div>
-    )
-}
+        </div>
+    </>
+    
+  }
 
-export default Home
+  export default Home;
