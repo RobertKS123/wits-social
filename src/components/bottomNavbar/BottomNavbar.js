@@ -1,15 +1,15 @@
-import React,{Component} from "react";
+import React,{Component , useContext} from "react";
 import {Link} from 'react-router-dom';
-import * as AiIcons from 'react-icons/ai';
-import * as BiIcons from 'react-icons/bi';
-import * as MdIcons from 'react-icons/md';
+import { AuthContext } from '../../api/AuthProvider';
 import {BottombarData} from './BottombarData';
 import './BottomNavbar.css';
 
 function BottomNavbar(){
+    const [state]  = useContext(AuthContext);
+
     return(
     <>
-        <nav className="bottomNavbar">
+        <nav className={state.nav ? 'bottomNavbar active' : 'bottomNavbar'}>
             <ul className='bottom-nav-menu'>
             {BottombarData.map((item, index) => {
                         return (

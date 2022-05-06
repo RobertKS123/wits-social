@@ -2,7 +2,9 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import * as BsIcons from 'react-icons/bs';
 import * as RiIcons from 'react-icons/ri';
 import { AuthContext } from '../../api/AuthProvider';
+import { LOGIN } from '../../api/Constants'
 import axios from '../../api/axios';
+import { Link } from 'react-router-dom';
 
 const LOGIN_URL = '/login/end_user_login.php';
 
@@ -39,7 +41,7 @@ const Login = () => {
                 console.log(user_id);
                 
                 dispatch({
-                    type: 'LOGIN',
+                    type: LOGIN,
                     payload : user_id,
                 })
 
@@ -65,9 +67,9 @@ const Login = () => {
                 <section>
                     <h1>You are logged in!</h1>
                     <br />
-                    <p>
-                        <a href="/home">Go to Home</a>
-                    </p>
+                    <Link to='/home'>
+                        Proceed to home
+                    </Link>
                 </section>
             ) : (
                 <section>
