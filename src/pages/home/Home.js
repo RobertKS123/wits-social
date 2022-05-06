@@ -64,10 +64,12 @@ function Home() {
           const new_array = array[i];
           final_array.push(
            <Podcast 
+             podcast_id = {new_array[0]}
              podcast_title = {new_array[1]}
              podcast_description =  {new_array[2]}
              podcast_audio = {new_array[3]}
              podcast_likes = {new_array[4]}
+             podcast_user_id = {new_array[5]}
              podcast_username = {new_array[10]}
              podcast_profile_image = {new_array[11]}
              podcast_back_image = {new_array[12]}
@@ -78,34 +80,9 @@ function Home() {
       }
     }
 
-    function createCommentBlocks(array){
-      if (array.length == 0){
-        return;
-      }
-      else{
-        var final_array = [];
-
-        for (var i = 0; i < array.length; i++){
-          const new_array = array[i];
-          final_array.push(
-           <Podcast 
-             podcast_title = {new_array[1]}
-             podcast_description =  {new_array[2]}
-             podcast_audio = {new_array[3]}
-             podcast_likes = {new_array[4]}
-             podcast_username = {new_array[10]}
-             podcast_profile_image = {new_array[11]}
-             podcast_back_image = {new_array[12]}
-           />
-          )
-        }
-        return(final_array);
-      }
-    }
 
   return ( 
     <div className="main_card">
-        
         <div className="container-fluid bg-dark">
           {createPodcastSquares_2(array_json)}
         </div>
