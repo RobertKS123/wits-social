@@ -7,7 +7,7 @@ import * as MdIcons from 'react-icons/md';
 export const BottombarData = [
     {
         title: 'Home',
-        path: '/',
+        path: '/home',
         icon: <AiIcons.AiFillHome />,
         cName: 'bottom-nav-item'
     },

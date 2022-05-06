@@ -100,7 +100,7 @@ const Signup = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                        <a href="/home">Proceed to home</a>
                     </p>
                 </section>
             ) : (

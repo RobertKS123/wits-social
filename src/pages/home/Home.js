@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import AuthContext from '../../api/AuthProvider';
 
-function Home() {
+const Home = () => {
+    const { auth } = useContext(AuthContext);
+
+    console.log(JSON.stringify(auth));
     return (
         <div className='home'>
             <h1>
