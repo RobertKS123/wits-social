@@ -1,14 +1,13 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import * as BsIcons from 'react-icons/bs';
 import * as RiIcons from 'react-icons/ri';
-import AuthContext from '../../api/AuthProvider';
+import { AuthContext } from '../../api/AuthProvider';
 import axios from '../../api/axios';
 
 const LOGIN_URL = '/login/end_user_login.php';
 
 const Login = () => {
-    const { chageId } = useContext(AuthContext);
-    const [ auth ] = useContext(AuthContext);
+    const [state,dispatch]  = useContext(AuthContext);
 
     const userRef = useRef();
     const errRef = useRef();
@@ -32,23 +31,23 @@ const Login = () => {
         try {
             const response = await axios.get(LOGIN_URL,{params:{ email: email, password: pwd }});
             console.log(JSON.stringify(response?.data));
-            // const accessToken = response?.data?.accessToken;
-            // const roles = response?.data?.roles;
-            // setAuth({ user, pwd, roles, accessToken });
             if(response?.data?.login === 301){
                 setErrMsg('Incorrect Username or Password');
             }
             else {
                 const user_id = response?.data?.user_id;
-                console.log(user_id)
-                chageId(user_id);
-                console.log(auth);
+                console.log(user_id);
+                
+                dispatch({
+                    type: 'LOGIN',
+                    payload : user_id,
+                })
+
                 setEmail('');
                 setPwd('');
                 setSuccess(true);
             }
         } catch (err) {
-            console.log(JSON.stringify(err?.response));
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err?.response?.data?.login === 301) {
