@@ -5,6 +5,7 @@ import * as IoIcons from 'react-icons/io';
 import * as BiIcons from 'react-icons/bi';
 import * as MdIcons from 'react-icons/md';
 
+
 export const SidebarData = [
     {
         title: 'Home',
@@ -29,5 +30,12 @@ export const SidebarData = [
         path: '/account',
         icon: <MdIcons.MdManageAccounts />,
         cName: 'nav-text'     
-    }
+    },
+    {
+        title: 'Reset',
+        path: '/reset',
+        icon: <MdIcons.MdManageAccounts />,
+        cName: 'nav-text'     
+    },
+    
 ]
