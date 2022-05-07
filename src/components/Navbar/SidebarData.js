@@ -19,6 +19,12 @@ export const SidebarData = [
         cName: 'nav-text'     
     },
     {
+        title: 'Signup',
+        path: '/signup',
+        icon: <BiIcons.BiLogIn />,
+        cName: 'nav-text'     
+    },
+    {
         title: 'Account',
         path: '/account',
         icon: <MdIcons.MdManageAccounts />,
