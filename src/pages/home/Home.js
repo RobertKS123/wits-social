@@ -13,7 +13,7 @@ function Home() {
     const [state]  = useContext(AuthContext);
 
 
-    function json2array(json_1_){ 
+    function json2array(json_1_){  //This function is used to convert from json objects into an array
       var result = [];
       var keys = Object.keys(json_1_);
       keys.forEach(function(key){
