@@ -14,7 +14,7 @@ function reducer(state,action){
     switch(action.type){
         case LOGIN:
             return {
-                id : state.id + action.payload,
+                id : action.payload,
                 nav : true,
             }
         default:

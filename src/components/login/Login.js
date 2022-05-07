@@ -4,7 +4,7 @@ import * as RiIcons from 'react-icons/ri';
 import { AuthContext } from '../../api/AuthProvider';
 import { LOGIN } from '../../api/Constants'
 import axios from '../../api/axios';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 
 const LOGIN_URL = '/login/end_user_login.php';
 
@@ -31,14 +31,12 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.get(LOGIN_URL,{params:{ email: email, password: pwd }});
-            console.log(JSON.stringify(response?.data));
+            const response = await axios.get(LOGIN_URL,{params:{ email: email, password: pwd }});;
             if(response?.data?.login === 301){
                 setErrMsg('Incorrect Username or Password');
             }
             else {
                 const user_id = response?.data?.user_id;
-                console.log(user_id);
                 
                 dispatch({
                     type: LOGIN,
@@ -65,11 +63,7 @@ const Login = () => {
         <>
             {success ? (
                 <section>
-                    <h1>You are logged in!</h1>
-                    <br />
-                    <Link to='/home'>
-                        Proceed to home
-                    </Link>
+                    <Redirect to='/home'/>
                 </section>
             ) : (
                 <section>
@@ -107,8 +101,9 @@ const Login = () => {
                     <p>
                         Need an Account?<br />
                         <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign Up</a>
+                            <Link to='/signup'>
+                                Signup
+                            </Link>
                         </span>
                     </p>
                 </section>

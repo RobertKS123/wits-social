@@ -1,18 +1,22 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, useContext} from 'react'
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as MdIcons from 'react-icons/md';
 import * as BsIcons from 'react-icons/bs';
 import * as RiIcons from 'react-icons/ri';
-import axios from 'axios';
+import axios from '../../api/axios';
 import './Signup.css';
+import { AuthContext } from '../../api/AuthProvider';
+import { LOGIN } from '../../api/Constants';
+import { Link,Redirect } from 'react-router-dom';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-const REGISTER_URL = 'https://startechies.000webhostapp.com/server/signup/end_user_signup.php';
+const REGISTER_URL = '/signup/end_user_signup.php';
 
 const Signup = () => {
+    const [state,dispatch]  = useContext(AuthContext);
 
     const userRef = useRef();
     const errRef = useRef();
@@ -72,22 +76,27 @@ const Signup = () => {
         try {
             const response = await axios.get(REGISTER_URL,{params:{ username: user, email : email, pwd :pwd }});
             
-            console.log(JSON.stringify(response?.data));
 
-            setSuccess(true);
-            setUser('');
-            setPwd('');
-            setEmail('');
-            setMatchPwd('');
-            console.log("success");
+            if (response?.data?.username_availability === 301) {
+                setErrMsg('Username Taken');           
+            } else if (response?.data?.email_availability === 301) {
+                setErrMsg('Email Taken');
+            } else {
+                const user_id = response?.data?.user_unique_id;               
+                dispatch({
+                    type: LOGIN,
+                    payload : user_id,
+                })                
+                setUser('');
+                setPwd('');
+                setEmail('');
+                setMatchPwd('');
+                setSuccess(true);
+            }
 
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
-            } else if (err.response?.username_availability === 301) {
-                setErrMsg('Username Taken');
-            } else if (err.response?.email_availability === 301) {
-                setErrMsg('Email Taken');
             } else {
                 setErrMsg('Registration Failed')
             }
@@ -98,10 +107,7 @@ const Signup = () => {
         <>
             {success ? (
                 <section>
-                    <h1>Success!</h1>
-                    <p>
-                        <a href="/home">Proceed to home</a>
-                    </p>
+                    <Redirect to='/home'/>
                 </section>
             ) : (
                 <section>
@@ -211,8 +217,9 @@ const Signup = () => {
                         <p>
                             Already registered?<br />
                             <span className="line">
-                                {/*put router link here*/}
-                                <a href="#">Sign In</a>
+                                <Link to='/login'>
+                                    Login
+                                </Link>
                             </span>
                         </p>
                     </div>

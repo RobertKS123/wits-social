@@ -6,23 +6,31 @@ import './LandingPage.css';
 
 function LandingPage() {
     return (
-        <div className='landing'>
+        <section>
             <h1>
                 Welcome to wits social
             </h1>
-            <Link to='/signup'>
-                <div className='landing-button'>
-                    <BiIcons.BiLogInCircle className='landing-icon'/>
-                    Signup
-                </div>
-            </Link>
-            <Link to='/login'>
-                <div className='landing-button'>
-                    <BsIcons.BsPersonCircle className='landing-icon'/>
-                    Login
-                </div>
+            <div className='button-container'>
+                <Link to='/signup'>
+                    <div className='landing-button-outer'>
+                        <div className='landing-button-inner'>
+                            <BiIcons.BiLogInCircle className='landing-icon'/>
+                            Signup
+                        </div>
+                    </div>
                 </Link>
-        </div>
+                <Link to='/login'>
+                    <div className='landing-button-outer'>
+                        <div className='landing-button-inner'>
+                            <div className='landing-button'>
+                                <BsIcons.BsPersonCircle className='landing-icon'/>
+                                Login
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+        </section>
     )
 }
 
