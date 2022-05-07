@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 
-function GetFunction(input_url) {
+function GetFunction(input_url) { //The same function that is used to fetch the podcasts
     
     function json2array(json_1_){
         var result = [];
