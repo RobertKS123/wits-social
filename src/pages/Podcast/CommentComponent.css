@@ -1,9 +1,10 @@
 .commentScrollBox{
     /*background-color: azure;*/
     
-    height: 14vh; /*11vh;*/
+    height: 14vh; /*11vh;*/   
     width: 90%;
     margin: 0 auto;
     overflow-y:scroll;
+    
     
 }

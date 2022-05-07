@@ -6,7 +6,7 @@ import Signup from './components/login/Signup';
 import Account from './pages/account/manage/ManageAccount';
 import Login from './components/login/Login';
 import BottomNavbar from './components/bottomNavbar/BottomNavbar';
-import LandingPage from './pages/landing_page/LandingPage';
+//import LandingPage from './pages/landing_page/LandingPage';
 import TopForYou from './pages/home/TopForYou/TopForYou';
 import LandingPage from './pages/landingPage/LandingPage';
 

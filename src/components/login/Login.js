@@ -5,6 +5,7 @@ import { AuthContext } from '../../api/AuthProvider';
 import { LOGIN } from '../../api/Constants'
 import axios from '../../api/axios';
 import { Link,Redirect } from 'react-router-dom';
+import "./Signup.css";
 
 const LOGIN_URL = '/login/end_user_login.php';
 

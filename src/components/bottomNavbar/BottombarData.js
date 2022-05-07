@@ -3,6 +3,7 @@ import * as BsIcons from 'react-icons/bs';
 import * as AiIcons from 'react-icons/ai';
 import * as HiIcons from 'react-icons/hi';
 import * as MdIcons from 'react-icons/md';
+import * as BiIcons from 'react-icons/bi';
 
 export const BottombarData = [
     {
@@ -29,12 +30,7 @@ export const BottombarData = [
         icon: <HiIcons.HiOutlineInboxIn />,
         cName: 'bottom-nav-item' 
     },
-    {
-        title: 'LandingPage',
-        path: '/landing_page',
-        icon: <BiIcons.BiLogIn />,
-        cName: 'nav-text'     
-    },
+    
     {
         title: 'Account',
         path: '/account',
