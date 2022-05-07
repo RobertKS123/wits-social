@@ -51,7 +51,7 @@ function Home() {
     
     const total_practice_array = [];
       for (var i = 0; i < users.length; i++){
-        total_practice_array.push(json2array(users[i]));
+        total_practice_array.push(json2array(users[i])); //This pushes every item into a new array
     }
 
     const array_json = total_practice_array;
