@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { AuthContext } from '../../api/AuthProvider';
 import {BottombarData} from './BottombarData';
 import './BottomNavbar.css';
+//import LandingPage from './Backdrop';
 
 function BottomNavbar(){
     const [state]  = useContext(AuthContext);

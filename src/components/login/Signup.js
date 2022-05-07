@@ -10,6 +10,7 @@ import { AuthContext } from '../../api/AuthProvider';
 import { LOGIN } from '../../api/Constants';
 import { Link,Redirect } from 'react-router-dom';
 
+
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
