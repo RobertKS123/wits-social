@@ -1,12 +1,8 @@
-import React, { Component } from "react";
-import './CommentComponent.css';
-import CommentByUser from "./CommentByUser";
+import React from 'react';
 import { useEffect, useState } from "react";
 
-
-
-function CommentComponent(props) {
-
+function GetFunction(input_url) {
+    
     function json2array(json_1_){
         var result = [];
         var keys = Object.keys(json_1_);
@@ -22,8 +18,7 @@ function CommentComponent(props) {
       const [users, setUsers] = useState([]);
   
       useEffect(() => {
-          let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_comments.php'+'?podcast_id='+props.podcast_id_comment;
-          //console.log("URL LINK = ", url)
+          let url = "'"+input_url+"'";
           fetch(url)
           .then(res => res.json())
           .then((out) => {
@@ -50,34 +45,14 @@ function CommentComponent(props) {
        }
   
       const array_json = total_practice_array;
-  
-      function createComment(array){
-
-        if (array.length == 0){
-          return;
-        }
-        else{
-          var final_array = [];
-  
-          for (var i = 0; i < array.length; i++){
-            const new_array = array[i];
-            final_array.push(
-             <CommentByUser 
-               user_posted = {new_array[9]}
-               comment = {new_array[1]}
-             />
-            )
-          }
-          return(final_array);
-        }
+       
+      function return_final_ans(){
+          return (array_json);
       }
 
-    return (
-        <div className="commentScrollBox w3-border">
-            {createComment(array_json)}
-        </div>
-    )
-    
-  }
+      return(
+        return_final_ans
+      );
+}
 
-  export default CommentComponent;
+export default GetFunction

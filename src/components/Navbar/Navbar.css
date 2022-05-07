@@ -1,5 +1,6 @@
     .navbar {
         background-color: #060b26;
+        text-align: right;
         height: 80px;
         display: flex;
         justify-content: start;
