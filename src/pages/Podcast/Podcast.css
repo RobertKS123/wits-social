@@ -1,0 +1,53 @@
+.podcastOuter{
+    /*background-color: #bab7ff;*/
+    width: 100%;
+    height: 84vh; /*500px;*/
+    margin-top: 0px;
+    margin-bottom: 1px;
+    padding-top: 19px;
+    overflow-y: scroll;
+    
+}
+
+.main_card {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    width: 100%;
+    height: 86.9vh;
+    overflow-y: scroll;
+    position: absolute;
+    bottom: 0%;
+    top: 4%;
+}
+
+.profilePic{
+    width: auto;
+    height:40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    size: 80%;
+}
+
+.podcastTitle{
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 19px;
+}
+
+.podcastDescription{
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+}
+
+.podcastCreator{
+    color: white;
+    font-weight: lighter;
+    text-align: center;
+    font-size: 15px;
+}
