@@ -23,7 +23,7 @@
 }
 
 .profilePic{
-    width: auto;
+    width: 70%;
     height:40%;
     display: block;
     margin-left: auto;
@@ -50,4 +50,5 @@
     font-weight: lighter;
     text-align: center;
     font-size: 15px;
+    margin-bottom: 2.5%;
 }
