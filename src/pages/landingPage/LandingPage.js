@@ -6,31 +6,36 @@ import './LandingPage.css';
 
 function LandingPage() {
     return (
-        <section>
-            <h1>
-                Welcome to wits social
-            </h1>
-            <div className='button-container'>
-                <Link to='/signup'>
-                    <div className='landing-button-outer'>
-                        <div className='landing-button-inner'>
-                            <BiIcons.BiLogInCircle className='landing-icon'/>
-                            Signup
-                        </div>
-                    </div>
-                </Link>
-                <Link to='/login'>
-                    <div className='landing-button-outer'>
-                        <div className='landing-button-inner'>
-                            <div className='landing-button'>
-                                <BsIcons.BsPersonCircle className='landing-icon'/>
-                                Login
+        <div className='w3-container'>
+
+            <div className='w3-display-topmiddle imgContainer'>
+                <img src="https://startechies.000webhostapp.com/resources/img/welcomeBanner.jpeg" className='welcomeBanner' />
+                <img src="https://startechies.000webhostapp.com/resources/img/logo.jpeg" className='logo'/>
+                <h1 className='heading w3-monospace'>Let's Get Started:</h1>
+                <div className='button-container '>
+                    <Link to='/signup'>
+                        <div className='landing-button-outer'>
+                            <div className='landing-button-inner w3-monospace'>
+                                <BiIcons.BiLogInCircle className='landing-icon'/>
+                                Signup
                             </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                    <Link to='/login'>
+                        <div className='landing-button-outer'>
+                            <div className='landing-button-inner w3-monospace'>
+                                <div className='landing-button'>
+                                    <BsIcons.BsPersonCircle className='landing-icon'/>
+                                    Login
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
             </div>
-        </section>
+            
+            
+        </div>
     )
 }
 

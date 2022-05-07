@@ -26,10 +26,9 @@ function AudioComponent(props) {
                 </audio>
             </div>
             
-
         </div>
     </>
     
-  }
+}
 
-  export default AudioComponent;
+export default AudioComponent

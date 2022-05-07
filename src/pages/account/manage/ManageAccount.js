@@ -1,6 +1,12 @@
-import React from 'react'
+
+import React, {useContext} from 'react';
+import { AuthContext } from '../../../api/AuthProvider';
 
 function Account() {
+
+    const [state] = useContext(AuthContext);
+    console.log(state.nav);
+    console.log(state.id);
     return (
         <div className='manage'>
             <h1>

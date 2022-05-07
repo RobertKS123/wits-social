@@ -1,9 +1,6 @@
 import React from "react";
 import './CommentByUser.css';
 
-
-
-
 function CommentByUser(props) {
 
     
@@ -14,6 +11,6 @@ function CommentByUser(props) {
         </div>
     </>
     
-  }
+}
 
-  export default CommentByUser;
+export default CommentByUser
