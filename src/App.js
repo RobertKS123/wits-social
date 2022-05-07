@@ -10,6 +10,7 @@ import BottomNavbar from './components/bottomNavbar/BottomNavbar';
 import TopForYou from './pages/home/TopForYou/TopForYou';
 import LandingPage from './pages/landingPage/LandingPage';
 
+
 function App() {
 
 return (

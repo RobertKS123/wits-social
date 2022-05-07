@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import './CommentComponent.css';
 import CommentByUser from "./CommentByUser";
 import { useEffect, useState } from "react";
@@ -45,9 +45,9 @@ function CommentComponent(props) {
       }, []);
       
       const total_practice_array = [];
-       for (var i = 0; i < users.length; i++){
+      for (var i = 0; i < users.length; i++){
           total_practice_array.push(json2array(users[i]));
-       }
+      }
   
       const array_json = total_practice_array;
   
@@ -62,10 +62,10 @@ function CommentComponent(props) {
           for (var i = 0; i < array.length; i++){
             const new_array = array[i];
             final_array.push(
-             <CommentByUser 
-               user_posted = {new_array[9]}
-               comment = {new_array[1]}
-             />
+            <CommentByUser 
+              user_posted = {new_array[9]}
+              comment = {new_array[1]}
+            />
             )
           }
           return(final_array);
@@ -80,4 +80,4 @@ function CommentComponent(props) {
     
   }
 
-  export default CommentComponent;
+export default CommentComponent
