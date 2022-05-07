@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import * as BsIcons from 'react-icons/bs';
 import * as RiIcons from 'react-icons/ri';
 import { AuthContext } from '../../api/AuthProvider';
-import { LOGIN } from '../../api/Constants'
+import { LOGIN } from '../../api/Constants';
 import axios from '../../api/axios';
 import { Link,Redirect } from 'react-router-dom';
 import "./Signup.css";

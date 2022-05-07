@@ -1,6 +1,5 @@
 import React from "react";
 import './AudioComponent.css';
-
 import './AudioHtmlTag.css';
 
 function playAudio(link){
@@ -27,13 +26,9 @@ function AudioComponent(props) {
                 </audio>
             </div>
             
-
-
         </div>
     </>
     
-  }
+}
 
-
-  export default AudioComponent
-
+export default AudioComponent
