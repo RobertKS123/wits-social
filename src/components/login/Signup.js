@@ -111,7 +111,7 @@ const Signup = () => {
                     <Redirect to='/home'/>
                 </section>
             ) : (
-                <section>
+                <section className='w3-monospace'>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Register</h1>
                     <form onSubmit={handleSubmit}>
