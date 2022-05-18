@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 //import $ from "jquery";
 //import "./App.css";
 //import axios from "axios";
@@ -7,10 +7,13 @@ import { useEffect, useState } from "react";
 import TopForYou from "./TopForYou/TopForYou";
 import Podcast from "../Podcast/Podcast";
 import GetFunction from "./GetFunction";
+import { AuthContext } from '../../api/AuthProvider';
 
 function Home() {
+    const [state]  = useContext(AuthContext);
 
-    function json2array(json_1_){
+
+    function json2array(json_1_){  //This function is used to convert from json objects into an array
       var result = [];
       var keys = Object.keys(json_1_);
       keys.forEach(function(key){
@@ -25,15 +28,15 @@ function Home() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_list.php/';
+        let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_list.php/'; //Link to the database that displays all podcasts and their information
         fetch(url)
         .then(res => res.json())
-        .then((out) => {
-          json_1 = JSON.stringify(out);
+        .then((out) => { //This is a json object
+          json_1 = JSON.stringify(out); //This is a json string
           const practice_array = [];
-          const  jsonParsedArray = JSON.parse(json_1);
+          const  jsonParsedArray = JSON.parse(json_1); //This is a normal string
           
-          for ( var key in jsonParsedArray) {
+          for ( var key in jsonParsedArray) { //for each json object in the string, push it into an array
             if(jsonParsedArray[key]instanceof Object){
               practice_array.push(jsonParsedArray[key]);
             }
@@ -44,16 +47,16 @@ function Home() {
           }
         })
         .catch(err => { throw err });
-    }, []);
+    }, []); //This makes sure that useeffect only runs once
     
     const total_practice_array = [];
-     for (var i = 0; i < users.length; i++){
-        total_practice_array.push(json2array(users[i]));
-     }
+      for (var i = 0; i < users.length; i++){
+        total_practice_array.push(json2array(users[i])); //This pushes every item into a new array
+    }
 
     const array_json = total_practice_array;
 
-    function createPodcastSquares_2(array){
+    function createPodcastSquares_2(array){ //This is the main function that creates a podcast
       if (array.length == 0){
         return;
       }
@@ -63,17 +66,17 @@ function Home() {
         for (var i = 0; i < array.length; i++){
           const new_array = array[i];
           final_array.push(
-           <Podcast 
-             podcast_id = {new_array[0]}
-             podcast_title = {new_array[1]}
-             podcast_description =  {new_array[2]}
-             podcast_audio = {new_array[3]}
-             podcast_likes = {new_array[4]}
-             podcast_user_id = {new_array[5]}
-             podcast_username = {new_array[10]}
-             podcast_profile_image = {new_array[11]}
-             podcast_back_image = {new_array[12]}
-           />
+          <Podcast //This creates a podcast component for each podcast in the database and sends in all relevant information
+            podcast_id = {new_array[0]}
+            podcast_title = {new_array[1]}
+            podcast_description =  {new_array[2]}
+            podcast_audio = {new_array[3]}
+            podcast_likes = {new_array[4]}
+            podcast_user_id = {new_array[5]}
+            podcast_username = {new_array[10]}
+            podcast_profile_image = {new_array[11]}
+            podcast_back_image = {new_array[12]}
+          />
           )
         }
         return(final_array);
@@ -82,16 +85,16 @@ function Home() {
 
 
   return ( 
-    <div className="main_card">
+    //<div className="main_card">
         <div className="container-fluid bg-dark">
           {createPodcastSquares_2(array_json)}
         </div>
-    </div>
+    //</div>
     //{createPodcastSquares_2(array_json)}
   );
 }
 
-export default Home; 
+export default Home 
 
 {/* 
         array_json[0] = Podcast_ID
@@ -108,47 +111,3 @@ export default Home;
         array_json[11] = EndUser_ProfilePicLink
         array_json[12] = EndUser_BannerLink 
         */}
-
-        {/* function createPodcastSquares(array, num){
-            
-          if (num == 0){
-            return;
-          }
-          var real_num = num / 13;
-    
-          for (var i = 0; i < real_num; i++){ 
-                  
-            //iter_num = iter_num + 1;
-                    
-            for any array_json[iter_num] - remember to minus 1
-          
-            return(
-              <Podcast 
-                podcast_title = {array[1]}
-                podcast_description =  {array[2]}
-                podcast_audio = {array[3]}
-                podcast_likes = {array[4]}
-                podcast_username = {array[10]}
-              />
-            );
-          }
-        }
-        */ }
-
-        {/*else{
-          for (var i = 0; i < array.length; i++){
-            const new_array = array[i];
-            console.log("VALUE OF i IS = ", i);
-            return(
-              <Podcast 
-                podcast_title = {new_array[1]}
-                podcast_description =  {new_array[2]}
-                podcast_audio = {new_array[3]}
-                podcast_likes = {new_array[4]}
-                podcast_username = {new_array[10]}
-              />
-            );
-            
-          }
-        }
-      */}

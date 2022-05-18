@@ -1,8 +1,9 @@
     .bottomNavbar{
-        position: absolute;
+        position: fixed;
         bottom: 0;
-        background-color: #060b26;
-        height: 9vh;
+        left: -100%;
+        background-color: #023535;
+        height: 50px;
         display: flex;
         justify-content: start;
         align-items: center;
@@ -10,34 +11,44 @@
         width: 100%;
     }
 
+    .bottomNavbar.active{
+        left: 0;
+        transition: 0ms;
+    }
+
     .bottom-nav-menu {
         list-style-type: none;
-        padding: 0;
         overflow: hidden;
         display: inline;
         margin: auto;
         white-space: nowrap;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
     }
 
     .bottom-nav-item {
         float: left;
-        size: 20px;
+        size: 10px;
         white-space: nowrap;
+        align-items: center;
+        margin-top: 3px;
     }
 
     .bottom-nav-item a {
         display: block;
         color: white;
-        text-align: center;
         align-self: center;
-        padding: 10px;        
+        text-align: center;      
         text-decoration: none;
+        size: 20px;
+    }
+    
+    .bottom-nav-item p{
+        font-size: 13px;
     }
 
-    .nav-icon{
-        margin: 16px;
+    .nav-icon {
+        align-items: center;
     }
 
-    .bottom-nav-item a:hover{
-        background-color: #1a83ff;        
-    }
