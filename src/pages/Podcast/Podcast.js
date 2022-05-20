@@ -25,11 +25,12 @@ function Podcast(props) {
         try {                                                     //database_variable ; my_variable
             const response = await axios.get(LIKES_URL,{params:{ podcast_id: props.podcast_id, username: state.id}});
             setSuccess(true);
-            setLikes(response?.data?.podcast_likes); //Change based on php response
-            if (response?.data?.likestate === 1){
+            setLikes(response?.data?.podcast_no_likes); //Change based on php response
+            console.log(JSON.stringify(response?.data))
+            if (response?.data?.like_response === 1){
               setLikesState(true);
             }
-            if (response?.data?.likeState === 0){
+            if (response?.data?.like_response === 0){
               setLikesState(false);
             }
             //setLikesState(true);
