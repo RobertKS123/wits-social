@@ -12,7 +12,6 @@ import { AuthContext } from '../../api/AuthProvider';
 function Home() {
     const [state]  = useContext(AuthContext);
 
-
     function json2array(json_1_){  //This function is used to convert from json objects into an array
       var result = [];
       var keys = Object.keys(json_1_);
@@ -22,9 +21,7 @@ function Home() {
       return result;
     }
 
-    
     let json_1;
-
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
