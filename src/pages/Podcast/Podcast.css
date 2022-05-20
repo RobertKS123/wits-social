@@ -56,3 +56,15 @@
 a{
     margin-left: 40%;
 }
+
+.likes {
+    background-color: transparent;
+    color: white;
+    margin-left: 55%;
+    padding: 0;
+    
+}
+
+.likes.active {
+    color: '#ff69b4';
+}
