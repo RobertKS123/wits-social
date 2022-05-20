@@ -1,5 +1,7 @@
 <?php
 /*  
+    
+    
     Script URL:
 	https://startechies.000webhostapp.com/server/podcast_scripts/like_unlike_podcast.php
 	
@@ -16,10 +18,25 @@
       for this podcast in the podcast table will increment by 1.
     - If the user has already liked this podcast, then the existing instance of (this user id with this podcast id) will be deleted from the podcast likes table and the amount of likes
       for this podcast in the podcast table will decrement by 1.
+      
+     What the file outputs? (ie. the response)
+     - A JSON object in the following format:
+        {like_response:x,podcast_no_likes:y}
+    - If x is true, then the podcast was just liked and its number of likes was incremented by 1.
+    - If x is false, then the podcast was just unliked and its number of likes was decremented by 1.
+    - y just gives an update on the number of likes of the podcast that this script deals with
     
 */
 
 require_once '../db_config.php';
+
+//First define response data:
+
+$likeResponse = true;
+$noLikesPodcast = 0;
+
+	
+$response_data = array('like_response' => $likeResponse, 'podcast_no_likes' => $noLikesPodcast);
 
 $user_id = $_REQUEST['user_id'];
 $podcast_id = $_REQUEST['podcast_id'];
@@ -48,7 +65,7 @@ else{
 
 //Now we add/remove like:
 if($like=="addLike"){
-    //1. Insert record of user id and podcast id in podcast likes table + 2. increment podcast likes by 1 in podcast table.
+    //1. Insert record of user id and podcast id in podcast likes table + 2. increment podcast likes by 1 in podcast table + 3. Return the response
     
     //1.
     
@@ -70,10 +87,24 @@ if($like=="addLike"){
     mysqli_stmt_bind_param($prepStateIncrement, "i", $podcast_id);
     mysqli_stmt_execute($prepStateIncrement);
     
+    //3.
+    
+    $query_getLikes = "SELECT Podcast_Likes FROM ST_Podcasts WHERE Podcast_ID=?;";
+    $prepStategetLikes = mysqli_stmt_init($link);
+    mysqli_stmt_prepare($prepStategetLikes,$query_getLikes);
+    mysqli_stmt_bind_param($prepStategetLikes, "i", $podcast_id);
+    mysqli_stmt_execute($prepStategetLikes);
+    $getLikesResultSet = mysqli_stmt_get_result($prepStategetLikes);
+    while ($row = mysqli_fetch_assoc($getLikesResultSet)){
+	    $noLikesPodcast = $row["Podcast_Likes"];
+	}
+	$response_data['podcast_no_likes'] = $noLikesPodcast;
+	$response_data['like_response'] = true;
+    
     
 }
 else if($like=="removeLike"){
-    //1. Delete record of user id and podcast id in podcast likes table + 2. decrement podcast likes by 1 in podcast table.
+    //1. Delete record of user id and podcast id in podcast likes table + 2. decrement podcast likes by 1 in podcast table + 3. Return the response
     
     //1.
     
@@ -93,10 +124,27 @@ else if($like=="removeLike"){
     mysqli_stmt_prepare($prepStateDecrement,$query_decrement);
     mysqli_stmt_bind_param($prepStateDecrement, "i", $podcast_id);
     mysqli_stmt_execute($prepStateDecrement);
+    
+    //3.
+    
+    $query_getLikes = "SELECT Podcast_Likes FROM ST_Podcasts WHERE Podcast_ID=?;";
+    $prepStategetLikes = mysqli_stmt_init($link);
+    mysqli_stmt_prepare($prepStategetLikes,$query_getLikes);
+    mysqli_stmt_bind_param($prepStategetLikes, "i", $podcast_id);
+    mysqli_stmt_execute($prepStategetLikes);
+    $getLikesResultSet = mysqli_stmt_get_result($prepStategetLikes);
+    while ($row = mysqli_fetch_assoc($getLikesResultSet)){
+	    $noLikesPodcast = $row["Podcast_Likes"];
+	}
+	$response_data['podcast_no_likes'] = $noLikesPodcast;
+	$response_data['like_response'] = false;
 }
 else{
     //Something went wrong, do nothing
+    echo "Something went wrong";
 }
+
+echo json_encode($response_data);
 
 
 ?>
