@@ -23,7 +23,7 @@ const Upload = () => {
     const [validDesc, setValidDesc] = useState(false);
     const [descFocus, setDescFocus] = useState(false);
 
-    const [podcast, setPodcast] = useState('');
+    const [podcast, setPodcast] = useState(null);
     const [validPodcast, setValidPodcast] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
@@ -45,6 +45,15 @@ const Upload = () => {
         setValidPodcast(true);
     }, [podcast]);
 
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         audio_file: null,
+    //         audio_name: null,
+    //         audio_description: null,
+    //     };
+    // }
+
     const handleSubmit = async (e) =>{
         e.preventDefault();
         const v1 = NAME_REGEX.test(name);
@@ -55,17 +64,26 @@ const Upload = () => {
             return;
         }
 
+        const FileUploader = ({onFileSelect}) => {
+            const fileInput = useRef(null)
+        
+            const handleFileInput = (e) => {
+                // handle validations
+                onFileSelect(e.target.files[0])
+            }
+
         //Axios goes here 
         try {
             const id = state.id;
-
+            console.log(JSON.stringify(podcast));
             const response = await axios.get(UPLOAD_URL,{params:{user_id : id, podcast_title: name, podcast_description : desc, fileToUpload : podcast }});
             
-            if (response?.data?.file_exists === true) { //name taken
+            if (response?.data?.file_exists == true) { //name taken
                 setErrMsg('This podcast name is already in use');           
-            } else if (response?.data?.extension_valid === false) { //not accepted audio type
-                setErrMsg('This is not an accepted ausio type');
-            } else {              
+            } else if (response?.data?.extension_valid == false) { //not accepted audio type
+                setErrMsg('This is not an accepted audio type');
+            } else {          
+                console.log('success');    
                 setSuccess(true);
             }
 
@@ -83,12 +101,12 @@ const Upload = () => {
         <section className='w3-monospace'>
             <h1>Create!</h1>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
-            <form onSubmit={handleSubmit} encType='multipart/form-data'>
+            <form  encType='multipart/form-data' onSubmit={handleSubmit}>   
                 <div className='input-container'>
                     {/*<BsIcons.BsFillPersonFill className='input-icon'/>*/}
-                    <input
+                    <input className='file-name'
                         type="text"
-                        id="name"
+                        id="podcast_title"
                         placeholder='Podcast Name'
                         ref={nameRef}
                         autoComplete="off"
@@ -99,13 +117,13 @@ const Upload = () => {
                         onBlur={() => setNameFocus(false)}
                     />
                     {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                    <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
+                    <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />*/}
                 </div>
                 <div className='input-container'>
                     {/*<BsIcons.BsFillPersonFill className='input-icon'/>*/}
                     <textarea
                         type="text"
-                        id="desc"
+                        id="podcast_description"
                         placeholder='Podcast Description'
                         onChange={(e) => setDesc(e.target.value)}
                         value={desc}
@@ -114,17 +132,21 @@ const Upload = () => {
                         onBlur={() => setDescFocus(false)}
                     />
                     {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                    <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
+                    <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />*/}
                 </div>
                 <div className='input-container'>
                     <p>Add your podcast here</p>
                     <AiIcons.AiOutlinePlusCircle />
                     <input
                         type='file'
-                        id="podcast"
+                        id="fileToUpload"
                         accept='audio/mp3, audio/wav'
-                        onChange={(e) => setPodcast(e.target.value)}
+                        // onChange={(e) => setPodcast(e.target.files[0])}
+                        onChange={handleFileInput}
+                        name="fileToUpload"
                         // style={{display: 'none'}}
+                        value={podcast}
+                        required
                     />
                 </div>
                 <button disabled={!validName || !validDesc ? true : false}>Upload</button>

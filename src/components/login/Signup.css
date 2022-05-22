@@ -78,6 +78,7 @@ input[type="password"],
 input[type="email"],
 button,
 textarea {
+    
     font-size: 22px;
     padding: 0.25rem;
     background-color: #0CABA8;

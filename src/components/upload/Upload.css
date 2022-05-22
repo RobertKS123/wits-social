@@ -26,6 +26,16 @@ textarea {
     background-color: #0CABA8;
     border-style: none;
     color: white;
+    width: 70%;
+}
+
+.file-name{
+    font-size: 22px;
+    margin-left: 5%;
+    padding: 0.25rem;
+    background-color: #0CABA8;
+    border-style: none;
+    color: white;
     width: 90%;
 }
 
