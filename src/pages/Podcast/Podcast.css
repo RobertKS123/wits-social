@@ -69,3 +69,16 @@ a{
 .likes.active {
     color: '#ff69b4';
 }
+
+.likes.true {
+    background-color: transparent;
+    color: white;
+    margin-left: 55%;
+    padding: 0;
+    height: 0.14rem;
+    
+}
+
+.likes.false {
+    color: '#ff69b4';
+}

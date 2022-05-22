@@ -22,36 +22,24 @@ function Podcast(props) {
 
     const handleSubmit = async (e) => { //wehn someone presses submit on the form
         e.preventDefault();
-        process.env.number_of_presses=process.env.number_of_presses+1;
 
-        if (number_of_presses%2===0){
-          setLikes(likes-1);
-          process.env.number_of_likes_real = props.podcast_likes-1;
-          console.log("YYYYYYYY");
-        }
-        if (number_of_presses%2===1){
-          setLikes(likes+1)
-          process.env.number_of_likes_real = props.podcast_likes+1;
-          console.log("SSSSSSSSSSS");
-        }
-        // prevents button hack
         //Axios - speaks to ther server
         try {                                                     //database_variable ; my_variable
-            const response = await axios.get(LIKES_URL,{params:{ podcast_id: props.podcast_id, username: state.id}});
+            const response = await axios.get(LIKES_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
             setSuccess(true);
+            
             setLikes(response?.data?.podcast_no_likes); //Change based on php response
-            console.log(JSON.stringify(response?.data))
+
+            console.log(JSON.stringify(response?.data));
+
             if (response?.data?.like_response === true){
               setLikesState(true);
-              setLikes(props.podcast_likes-1)
-              console.log("HEREEEEE");
+              //setLikes(props.podcast_likes-1)
             }
             if (response?.data?.like_response === false){
               setLikesState(false);
-              setLikes(props.podcast_likes+1)
+              //setLikes(props.podcast_likes+1)
             }
-            //setLikesState(true);
-            setLikes(response?.data?.podcasr_no_likes);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -59,9 +47,13 @@ function Podcast(props) {
                 setErrMsg('Registration Failed')
             }
         }
-
-        console.log("NUMBER OF LIKES = ", likes);
     }
+
+    // useEffect(() =>{
+    //   const response = axios.get(LIKES_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
+    //   setLikesState(response?.data?.like_response);
+    //   console.log("hereeeeee");
+    // })
 
   //const url = "https://startechies.000webhostapp.com/end_users/banners/banner_sample_1.png";    
     return(
@@ -78,9 +70,10 @@ function Podcast(props) {
           
           <AudioComponent audio_url={props.podcast_audio}/>
           <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
+          {/* <button className={likeState ? 'true' : 'false'} onClick={handleSubmit}> */}
             <div>
               <AiIcons.AiTwotoneLike/>
-              <span>{process.env.number_of_likes_real}</span>
+              <span>{likes}</span>
             </div>
           </button>
         <br/> 
