@@ -2,7 +2,7 @@ import React, { Component, useContext } from "react";
 import './CommentComponent.css';
 import CommentByUser from "./CommentByUser";
 import { useEffect, useState } from "react";
-
+import CreateComment from "./CreateComment";
 
 
 function CommentComponent(props) {
@@ -74,6 +74,7 @@ function CommentComponent(props) {
 
     return (
         <div className="commentScrollBox w3-border">
+            <CreateComment podcast_id = {props.podcast_id_comment}/> //
             {createComment(array_json)}
         </div>
     )
