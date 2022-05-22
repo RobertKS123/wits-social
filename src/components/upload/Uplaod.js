@@ -2,12 +2,12 @@ import React,{useState,useEffect,useRef,useContext} from 'react';
 import axios from '../../api/axios';
 import { AuthContext } from '../../api/AuthProvider';
 import { Link,Redirect } from 'react-router-dom';
-import styled from 'styled-components';
 import * as AiIcons from 'react-icons/ai';
+import './Upload.css';
 
 const NAME_REGEX =/^/;
 const DESC_REGEX =/^/;
-const UPLOAD_URL = '/';
+const UPLOAD_URL = '/podcast_scripts/upload_podcast.php';
 
 const Upload = () => {
     const [state] = useContext(AuthContext);
@@ -59,11 +59,11 @@ const Upload = () => {
         try {
             const id = state.id;
 
-            const response = await axios.get(UPLOAD_URL,{params:{id : id, name: name, decription : desc, podcast : podcast }});
+            const response = await axios.get(UPLOAD_URL,{params:{user_id : id, podcast_title: name, podcast_description : desc, fileToUpload : podcast }});
             
-            if (response?.data?.podcastId === 301) { //name taken
+            if (response?.data?.file_exists === true) { //name taken
                 setErrMsg('This podcast name is already in use');           
-            } else if (response?.data?.audioType === 301) { //not accepted audio type
+            } else if (response?.data?.extension_valid === false) { //not accepted audio type
                 setErrMsg('This is not an accepted ausio type');
             } else {              
                 setSuccess(true);
