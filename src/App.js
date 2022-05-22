@@ -16,14 +16,14 @@ function App() {
 return (
 	<>  		
 		<Router>
-		<Route path='/' exact  component={Upload}/>
+		{/* <Route path='/' exact  component={Upload}/> */}
 		<BottomNavbar />
-		{/* <Route path='/' exact component={LandingPage} /> */}
+		<Route path='/' exact component={LandingPage} />
 		<Route path='/signup' exact  component={Signup}/>
 		<Route path='/login' exact  component={Login}/>
 		<Route path='/home' exact component={Home}/>
 		{/* <Route path='/trending' exact component={Treanding}/>*/}
-		{/*<Route path='/create' exact  component={Upload}/>*/}
+		<Route path='/create' exact  component={Upload}/>
 		{/*<Route path ='/inbox' exact component={Inbox}/> */}
 		<Route path='/account' exact component={Account}/>
 		</Router>     
