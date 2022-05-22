@@ -38,10 +38,7 @@ section {
     position: relative;
 }
 
-.button-container{
-    
-    
-    
+.button-container{ 
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -73,7 +70,7 @@ section {
 }
 
 .landing-icon {
-    margin-left: 80px;
+    margin-left: 8px;
     margin-right: 10px;
     color: #015958;
     margin-bottom: 2px;
