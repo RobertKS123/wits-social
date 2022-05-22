@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    margin-left: 0%;
+    margin-right: 0%;
+    padding: 0;
+    
+}
+
+.input-container{
+    margin-top: 10px;
+    background-color: #0CABA8;
+    padding: 0.25rem;
+    border-radius: 25px;
+    color: white;
+    white-space: nowrap;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    font-size: 22px;
+    margin-left: 5%;
+    padding: 0.25rem;
+    background-color: #0CABA8;
+    border-style: none;
+    color: white;
+    width: 70%;
+}
+
+.file-name{
+    font-size: 22px;
+    margin-left: 5%;
+    padding: 0.25rem;
+    background-color: #0CABA8;
+    border-style: none;
+    color: white;
+    width: 90%;
+}
+
+button{
+    width: 60%;
+}
+
+p {
+    font-size: 16;
+}
+
+
