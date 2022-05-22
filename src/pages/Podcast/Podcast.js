@@ -8,19 +8,17 @@ import { AuthContext } from "../../api/AuthProvider";
 import axios from '../../api/axios';
 
 const LIKES_URL = '/podcast_scripts/like_unlike_podcast.php'; //link to database
-const number_of_presses = 0;
-const number_of_likes_real = 0;
 
 function Podcast(props) {
     const [state] = useContext(AuthContext);
     
-    const [success, setSuccess] = useState(false); //maybe button changes colour - in css
+    const [success, setSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState('');
 
     const [likes, setLikes] = useState((props.podcast_likes));
     const [likeState, setLikesState] = useState(false);
 
-    const handleSubmit = async (e) => { //wehn someone presses submit on the form
+    const handleSubmit = async (e) => { //wehn someone presses the like button
         e.preventDefault();
 
         //Axios - speaks to ther server
@@ -28,7 +26,7 @@ function Podcast(props) {
             const response = await axios.get(LIKES_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
             setSuccess(true);
             
-            setLikes(response?.data?.podcast_no_likes); //Change based on php response
+            setLikes(response?.data?.podcast_no_likes);
 
             console.log(JSON.stringify(response?.data));
 
@@ -49,14 +47,11 @@ function Podcast(props) {
         }
     }
 
-    // useEffect(() =>{
-    //   const response = axios.get(LIKES_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
-    //   setLikesState(response?.data?.like_response);
-    //   console.log("hereeeeee");
-    // })
-
   //const url = "https://startechies.000webhostapp.com/end_users/banners/banner_sample_1.png";    
+  
+  if (likeState === true){ //this means liked
     return(
+      
       <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
         <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
         
@@ -69,18 +64,50 @@ function Podcast(props) {
           </div>                   
           
           <AudioComponent audio_url={props.podcast_audio}/>
+          
           <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
-          {/* <button className={likeState ? 'true' : 'false'} onClick={handleSubmit}> */}
             <div>
-              <AiIcons.AiTwotoneLike/>
+              <AiIcons.AiTwotoneLike color="yellow"/>
               <span>{likes}</span>
             </div>
           </button>
+
         <br/> 
         <CommentComponent podcast_id_comment = {props.podcast_id}/>
       </div>
     )
+    }
+  
+  else { //this means unliked
+    return(
+      
+      <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
+        <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
+        
+          <div className="podcastTitle text-white">
+          {props.podcast_title}
+          {/* <span className="badge badge-dark">{props.podcast_title}</span>  */}
+            <br/>
+            <div className="podcastDescription"> {props.podcast_description}</div>
+            <div className="podcastCreator"><span className="badge badge-dark">Uploaded by {props.podcast_username}</span></div>
+          </div>                   
+          
+          <AudioComponent audio_url={props.podcast_audio}/>
+          
+          <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
+            <div>
+              <AiIcons.AiTwotoneLike color="magenta"/> 
+              <span>{likes}</span>
+            </div>
+          </button>
+
+        <br/> 
+        <CommentComponent podcast_id_comment = {props.podcast_id}/>
+      </div>
+    )
+    }
   }
+  
 
   export default Podcast
 
