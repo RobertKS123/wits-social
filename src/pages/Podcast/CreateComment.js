@@ -22,9 +22,10 @@ function CreateComment(props) {
     const handleSubmit = async (e) => { //wehn someone presses the like button
         e.preventDefault();
 
+        const id = state.id;
         //Axios - speaks to ther server
         try {                                                     //database_variable ; my_variable
-            const response = await axios.get(COMMENTS_URL,{params:{ user_id: 44, podcast_id: props.podcast_id, comment_body: comment}});
+            const response = await axios.get(COMMENTS_URL,{params:{ user_id: id, podcast_id: props.podcast_id, comment_body: comment}});
             setSuccess(true);
         } catch (err) {
             if (!err?.response) {
