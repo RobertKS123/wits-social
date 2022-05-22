@@ -44,16 +44,7 @@ const Upload = () => {
     useEffect(() => {
         setValidPodcast(true);
     }, [podcast]);
-
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         audio_file: null,
-    //         audio_name: null,
-    //         audio_description: null,
-    //     };
-    // }
-
+    
     const handleSubmit = async (e) =>{
         e.preventDefault();
         const v1 = NAME_REGEX.test(name);
@@ -64,20 +55,20 @@ const Upload = () => {
             return;
         }
 
-        const FileUploader = ({onFileSelect}) => {
-            const fileInput = useRef(null)
-        
-            const handleFileInput = (e) => {
-                // handle validations
-                onFileSelect(e.target.files[0])
-            }
-
         //Axios goes here 
         try {
             const id = state.id;
             console.log(JSON.stringify(podcast));
-            const response = await axios.get(UPLOAD_URL,{params:{user_id : id, podcast_title: name, podcast_description : desc, fileToUpload : podcast }});
-            
+            //const response = await axios.get(UPLOAD_URL,{params:{user_id : id, : name, podcast_description : desc, fileToUpload : podcast }});
+
+            const formData = new FormData();
+            formData.append("user_id", id)
+            formData.append("podcast_title", name);
+            formData.append("fileToUpload", podcast);
+            formData.append("podcast_description", desc);
+
+            const response = axios.post(UPLOAD_URL, formData)
+
             if (response?.data?.file_exists == true) { //name taken
                 setErrMsg('This podcast name is already in use');           
             } else if (response?.data?.extension_valid == false) { //not accepted audio type
@@ -96,7 +87,6 @@ const Upload = () => {
             errRef.current.focus();
         }
     }
-
     return(
         <section className='w3-monospace'>
             <h1>Create!</h1>
@@ -141,11 +131,9 @@ const Upload = () => {
                         type='file'
                         id="fileToUpload"
                         accept='audio/mp3, audio/wav'
-                        // onChange={(e) => setPodcast(e.target.files[0])}
-                        onChange={handleFileInput}
+                        onChange={(e) => setPodcast(e.target.files[0])}
                         name="fileToUpload"
                         // style={{display: 'none'}}
-                        value={podcast}
                         required
                     />
                 </div>
