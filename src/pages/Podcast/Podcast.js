@@ -28,7 +28,9 @@ function Podcast(props) {
             
             setLikes(response?.data?.podcast_no_likes);
 
-            console.log(JSON.stringify(response?.data));
+            // console.log(JSON.stringify(response?.data));
+            // console.log("PODCAST_ID = ", props.podcast_id);
+            // console.log("USER_ID = ", state.id);
 
             if (response?.data?.like_response === true){
               setLikesState(true);

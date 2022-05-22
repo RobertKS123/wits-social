@@ -1,5 +1,6 @@
 import React from "react";
 import './CommentByUser.css';
+import CreateComment from "./CreateComment";
 
 function CommentByUser(props) {
 
