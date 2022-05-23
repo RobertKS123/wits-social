@@ -1,18 +1,7 @@
 version: 2.1
-
 orbs:
-  react: thefrontside/react@0.2.0
-
+    hello: circleci/hello-build@0.0.5
 workflows:
-  push:
-    jobs:
-      - react/install
-      - react/eslint:
-          requires:
-            - react/install
-      - react/test:
-          requires:
-            - react/install
-      - react/coverage:
-          requires:
-            - react/install
+    "Hello Workflow":
+        jobs:
+          - hello/hello-build
