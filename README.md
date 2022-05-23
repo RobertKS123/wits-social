@@ -2,6 +2,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/OpenSourceHelpCommunity/OpenSourceHelpCommunity.github.io/badge.svg?branch=develop)](https://coveralls.io/github/OpenSourceHelpCommunity/OpenSourceHelpCommunity.github.io?branch=develop)
 
+[![CircleCI](https://circleci.com/gh/RobertKS123/wits-social/tree/master.svg?style=svg)](https://circleci.com/gh/RobertKS123/wits-social/tree/master)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
