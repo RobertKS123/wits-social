@@ -18,7 +18,7 @@ const Reset = () =>{
         const errRef = useRef();
     
         const [user, setUser] = useState('');
-        //const [pwd, setPwd] = useState('');
+        const [pwd, setPwd] = useState('');
         const [errMsg, setErrMsg] = useState('');
         const [success, setSuccess] = useState(false);
     
@@ -69,7 +69,7 @@ const Reset = () =>{
                         <h1>Plese check you emails to reset password</h1>
                         <br />
                         <p>
-                            <a href="/">Go to Home</a>
+                            <a href="./Password">Go to Home</a>
                         </p>
                     </section>
                 ) : (

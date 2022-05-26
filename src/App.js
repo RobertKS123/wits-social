@@ -9,6 +9,7 @@ import Login from './components/login/Login';
 import BottomNavbar from './components/bottomNavbar/BottomNavbar';
 
 import Reset from './components/Reset/reset';
+import Password from './components/Password/Password';
 
 
 
