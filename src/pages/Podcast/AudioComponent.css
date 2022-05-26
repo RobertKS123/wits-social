@@ -1,0 +1,22 @@
+.audioCompOuter{
+    
+    /*background-color: rgb(255, 255, 255);*/
+    height: 20px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.btn{
+    background-color: rgb(0, 91, 182);
+    border: none;
+    color: white;
+    padding: 10px 14px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+    background-color: RoyalBlue;
+}
+

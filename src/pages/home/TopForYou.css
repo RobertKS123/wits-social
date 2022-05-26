@@ -1,0 +1,20 @@
+.alanforYou{
+    background-color: black;
+    /*font-size: 15px;*/
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    height: 60px;
+    top: 0;
+    
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
