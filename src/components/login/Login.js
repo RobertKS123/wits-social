@@ -1,18 +1,21 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import * as BsIcons from 'react-icons/bs';
 import * as RiIcons from 'react-icons/ri';
-//import AuthContext from "./context/AuthProvider";
+import { AuthContext } from '../../api/AuthProvider';
+import { LOGIN } from '../../api/Constants';
+import axios from '../../api/axios';
+import { Link,Redirect } from 'react-router-dom';
+import "./Signup.css";
 
-import axios from 'axios';
-
-const LOGIN_URL = 'https://startechies.000webhostapp.com/server/login/end_user_login.php';
+const LOGIN_URL = '/login/end_user_login.php';
 
 const Login = () => {
-//    const { setAuth } = useContext(AuthContext);
+    const [state,dispatch]  = useContext(AuthContext);
+
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
+    const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
@@ -23,33 +26,33 @@ const Login = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd])
+    }, [email, pwd])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.get(LOGIN_URL,{params:{ user, pwd }},
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            //const accessToken = response?.data?.accessToken;
-            //const roles = response?.data?.roles;
-            //setAuth({ user, pwd, roles, accessToken });
-            setUser('');
-            setPwd('');
-            setSuccess(true);
+            const response = await axios.get(LOGIN_URL,{params:{ email: email, password: pwd }});;
+            if(response?.data?.login === 301){
+                setErrMsg('Incorrect Username or Password');
+            }
+            else {
+                const user_id = response?.data?.user_id;
+                
+                dispatch({
+                    type: LOGIN,
+                    payload : user_id,
+                })
+
+                setEmail('');
+                setPwd('');
+                setSuccess(true);
+            }
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
-            } else if (err.response?.status === 300) {
-                setErrMsg('Missing Username or Password');
-            } else if (err.response?.status === 301) {
-                setErrMsg('Unauthorized');
+            } else if (err?.response?.data?.login === 301) {
+                setErrMsg('Incorrect Username or Password');
             } else {
                 setErrMsg('Login Failed');
             }
@@ -61,14 +64,10 @@ const Login = () => {
         <>
             {success ? (
                 <section>
-                    <h1>You are logged in!</h1>
-                    <br />
-                    <p>
-                        <a href="#">Go to Home</a>
-                    </p>
+                    <Redirect to='/home'/>
                 </section>
             ) : (
-                <section>
+                <section className='w3-monospace'>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Sign In</h1>
                     <form onSubmit={handleSubmit}>
@@ -76,12 +75,12 @@ const Login = () => {
                         <BsIcons.BsFillPersonFill className='input-icon'/>
                         <input
                             type="text"
-                            id="username"
-                            placeholder='UserName'
+                            id="email"
+                            placeholder='Email Adress'
                             ref={userRef}
                             autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
                             required
                         />
                     </div>
@@ -103,8 +102,9 @@ const Login = () => {
                     <p>
                         Need an Account?<br />
                         <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign Up</a>
+                            <Link to='/signup'>
+                                Signup
+                            </Link>
                         </span>
                     </p>
                 </section>

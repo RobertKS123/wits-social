@@ -1,33 +1,40 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
+import * as BsIcons from 'react-icons/bs';
 import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
-import * as BiIcons from 'react-icons/bi';
+import * as HiIcons from 'react-icons/hi';
 import * as MdIcons from 'react-icons/md';
+import * as BiIcons from 'react-icons/bi';
 
 export const BottombarData = [
     {
         title: 'Home',
-        path: '/',
+        path: '/home',
         icon: <AiIcons.AiFillHome />,
-        cName: 'nav-text'
+        cName: 'bottom-nav-item'
     },
     {
-        title: 'Login',
-        path: '/login',
-        icon: <BiIcons.BiLogIn />,
-        cName: 'nav-text'     
+        title: 'Trending',
+        path: '/trending',
+        icon: <HiIcons.HiTrendingUp />,
+        cName: 'bottom-nav-item'     
     },
     {
-        title: 'Signup',
-        path: '/signup',
-        icon: <BiIcons.BiLogIn />,
-        cName: 'nav-text'     
+        title: 'Create',
+        path: '/create',
+        icon: <BsIcons.BsPlusCircle />,
+        cName: 'bottom-nav-item'     
     },
+    {
+        title: 'Inbox',
+        path: '/inbox',
+        icon: <HiIcons.HiOutlineInboxIn />,
+        cName: 'bottom-nav-item' 
+    },
+    
     {
         title: 'Account',
         path: '/account',
         icon: <MdIcons.MdManageAccounts />,
-        cName: 'nav-text'     
+        cName: 'bottom-nav-item'     
     }
 ]

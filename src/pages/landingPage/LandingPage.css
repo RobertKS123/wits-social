@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    color: #fff;
+}
+
+body {
+    min-height: 80vh;
+    background-color: #ffff;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    padding: 1rem 0.5rem;
+    background-color: #e6e6e6;
+}
+
+section {
+    width: 100%;
+    max-width: 420px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    background-color: white;
+    color: #015958;
+    position: relative;
+}
+
+.button-container{ 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+
+
+.landing-button-outer {
+    align-self: flex-end;
+    margin-top: 10px;
+    background-color: #0CABA8;
+    padding: 0.25rem;
+    border-radius: 25px;
+    color: white;
+    white-space: nowrap;
+}
+
+.landing-button-inner{
+    
+    border-radius: 25px;
+    font-size: 22px;
+    padding: 0.25rem;
+    background-color: #0CABA8;
+    border-style: none;
+    color: white;
+    width: 70%;
+    
+    
+}
+
+.landing-icon {
+    margin-left: 8px;
+    margin-right: 10px;
+    color: #015958;
+    margin-bottom: 2px;
+}
+
+.logo{
+    width: 110px;
+    height: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 50px;
+    margin-top: 3vh;
+}
+
+.welcomeBanner{
+    width: 100%;
+    height: 30%;
+    min-width: 300px;
+}
+
+.imgContainer{
+    
+    align-items: center;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7vh;
+}
+
+.heading{
+    text-align: center;
+    font-size: 30px;
+}
