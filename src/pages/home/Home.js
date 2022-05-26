@@ -85,6 +85,7 @@ function Home() {
     //<div className="main_card">
         <div className="container-fluid bg-dark">
           {createPodcastSquares_2(array_json)}
+          <br/>
         </div>
     //</div>
     //{createPodcastSquares_2(array_json)}

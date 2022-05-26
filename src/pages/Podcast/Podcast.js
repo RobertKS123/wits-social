@@ -73,8 +73,6 @@ function Podcast(props) {
               <span>{likes}</span>
             </div>
           </button>
-
-        <br/> 
         <CommentComponent podcast_id_comment = {props.podcast_id}/>
       </div>
     )
@@ -102,8 +100,6 @@ function Podcast(props) {
               <span>{likes}</span>
             </div>
           </button>
-
-        <br/> 
         <CommentComponent podcast_id_comment = {props.podcast_id}/>
       </div>
     )
