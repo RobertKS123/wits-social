@@ -19,7 +19,7 @@
     
 require_once '../db_config.php';
 
-$query_podcasts = "SELECT * FROM ST_Podcasts, ST_EndUsers WHERE ST_Podcasts.EndUser_ID=ST_EndUsers.EndUser_ID;";
+$query_podcasts = "SELECT * FROM ST_Podcasts, ST_EndUsers WHERE ST_Podcasts.EndUser_ID=ST_EndUsers.EndUser_ID ORDER BY Podcast_ID DESC;";
 $prepState_podcasts = mysqli_stmt_init($link);
 mysqli_stmt_prepare($prepState_podcasts,$query_podcasts);
 //mysqli_stmt_bind_param($prepState_orders, "s", $username);
