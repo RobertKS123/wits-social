@@ -114,13 +114,15 @@ else{
     $theDate = new DateTime();
     
     //Convert current date/time to string
-    $stringDate = $theDate->format('Y-m-d H:i:s');
+    $stringDate = $theDate->format('Y-m-dH:i:s');
     
     //Prepend user id to above string for added uniqueness
     $filename = $stringDate.$user_id;
     
     //AudioLink will be:
-    $audioLink = $target_dir.$filename.".".$fileExtension;
+    //$audioLink = $target_dir.$filename.".".$fileExtension;
+    //This variable (under) is the path of the file that will be inserted into the table
+    $audioLink = "https://startechies.000webhostapp.com/podcasts/uploads/".$filename.".".$fileExtension;
     
     
     //Second parmater of this if is the name of the file basically on the server
