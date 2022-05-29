@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 //import "./App.css";
 //import axios from "axios";
 //import { Link } from "react-router-dom";
-//import './Home.css';
+import './Home.css';
 import TopForYou from "./TopForYou/TopForYou";
 import Podcast from "../Podcast/Podcast";
 import GetFunction from "./GetFunction";
@@ -63,6 +63,7 @@ function Home() {
         for (var i = 0; i < array.length; i++){
           const new_array = array[i];
           final_array.push(
+          <div className="inner-podcast-item">
           <Podcast //This creates a podcast component for each podcast in the database and sends in all relevant information
             podcast_id = {new_array[0]}
             podcast_title = {new_array[1]}
@@ -73,7 +74,7 @@ function Home() {
             podcast_username = {new_array[10]}
             podcast_profile_image = {new_array[11]}
             podcast_back_image = {new_array[12]}
-          />
+          /></div>
           )
         }
         return(final_array);
@@ -83,10 +84,17 @@ function Home() {
 
   return ( 
     //<div className="main_card">
-        <div className="container-fluid bg-dark">
-          {createPodcastSquares_2(array_json)}
-          <br/>
-        </div>
+        // <div className="container-fluid bg-dark">
+        //   {createPodcastSquares_2(array_json)}
+        //   <br/>
+        // </div>
+
+        <>
+          <div className="outer-box">
+            {/* <div className="inner-podcast-item"></div> */}
+            {createPodcastSquares_2(array_json)}
+          </div>
+        </>
     //</div>
     //{createPodcastSquares_2(array_json)}
   );
