@@ -58,7 +58,7 @@ function Podcast(props) {
         <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
         
           <div className="podcastTitle text-white">
-            <span class="badge badge-info">{props.podcast_title}</span>
+          <span class="badge badge-pill badge-light">{props.podcast_title}</span>
           </div>
           {/* <span className="badge badge-dark">{props.podcast_title}</span>  */}
             <br/>
@@ -85,13 +85,15 @@ function Podcast(props) {
       <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
         <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
         
-          <div className="podcastTitle text-white">
-          {props.podcast_title}
+        <div className="podcastTitle text-white">
+          <span class="badge badge-pill badge-light">{props.podcast_title}</span>
+          </div>
+          
           {/* <span className="badge badge-dark">{props.podcast_title}</span>  */}
             <br/>
             <div className="podcastDescription"> {props.podcast_description}</div>
             <div className="podcastCreator"><span className="badge badge-dark">Uploaded by {props.podcast_username}</span></div>
-          </div>                   
+                             
           
           <AudioComponent audio_url={props.podcast_audio}/>
           
