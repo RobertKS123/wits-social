@@ -37,7 +37,7 @@
 .podcastTitle{
     color: white;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 17px;
     text-align: center;
     font-size: 19px;
 }
@@ -55,7 +55,8 @@
     font-weight: lighter;
     text-align: center;
     font-size: 15px;
-    margin-bottom: 2.5%;
+    /* margin-bottom: 2.5%; */
+    margin-bottom: 20px;
 }
 
 /* a{
