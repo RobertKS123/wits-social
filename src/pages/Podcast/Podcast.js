@@ -57,12 +57,12 @@ function Podcast(props) {
       <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
         <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
         
-          <div className="podcastTitle text-white">
-          <span class="badge badge-pill badge-light">{props.podcast_title}</span>
+          <div className="podcastTitle">
+          <span class="badge badge-pill badge-light podcastTitle">{props.podcast_title}</span>
           </div>
           {/* <span className="badge badge-dark">{props.podcast_title}</span>  */}
             <br/>
-            <div className="podcastDescription"> {props.podcast_description}</div>
+            <div className="podcastDescription"><span class="badge badge-primary">{props.podcast_description}</span></div>
             <div className="podcastCreator"><span className="badge badge-dark">Uploaded by {props.podcast_username}</span></div>
                              
           
@@ -85,13 +85,13 @@ function Podcast(props) {
       <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
         <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
         
-        <div className="podcastTitle text-white">
-          <span class="badge badge-pill badge-light">{props.podcast_title}</span>
+        <div className="podcastTitle">
+          <span class="badge badge-pill badge-light podcastTitle">{props.podcast_title}</span>
           </div>
           
           {/* <span className="badge badge-dark">{props.podcast_title}</span>  */}
             <br/>
-            <div className="podcastDescription"> {props.podcast_description}</div>
+            <div className="podcastDescription"><span class="badge badge-primary">{props.podcast_description}</span></div>
             <div className="podcastCreator"><span className="badge badge-dark">Uploaded by {props.podcast_username}</span></div>
                              
           
