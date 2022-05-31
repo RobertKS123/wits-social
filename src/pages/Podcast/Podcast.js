@@ -3,6 +3,7 @@ import './Podcast.css';
 import AudioComponent from "./AudioComponent";
 import CommentComponent from "./CommentComponent";
 import * as AiIcons from 'react-icons/ai';
+import * as FcIcons from 'react-icons/fc';
 import LikeComponent from "./LikeComponent";
 import { AuthContext } from "../../api/AuthProvider";
 import axios from '../../api/axios';
@@ -57,19 +58,20 @@ function Podcast(props) {
       <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
         <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
         
-          <div className="podcastTitle text-white">
-          {props.podcast_title}
+          <div className="podcastTitle">
+          <span class="badge badge-pill badge-light podcastTitle">{props.podcast_title}</span>
+          </div>
           {/* <span className="badge badge-dark">{props.podcast_title}</span>  */}
             <br/>
-            <div className="podcastDescription"> {props.podcast_description}</div>
+            <div className="podcastDescription"><span class="badge badge-primary">{props.podcast_description}</span></div>
             <div className="podcastCreator"><span className="badge badge-dark">Uploaded by {props.podcast_username}</span></div>
-          </div>                   
+                             
           
           <AudioComponent audio_url={props.podcast_audio}/>
           
           <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
             <div>
-              <AiIcons.AiTwotoneLike color="yellow"/>
+              <FcIcons.FcLike/>
               <span>{likes}</span>
             </div>
           </button>
@@ -84,19 +86,21 @@ function Podcast(props) {
       <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
         <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
         
-          <div className="podcastTitle text-white">
-          {props.podcast_title}
+        <div className="podcastTitle">
+          <span class="badge badge-pill badge-light podcastTitle">{props.podcast_title}</span>
+          </div>
+          
           {/* <span className="badge badge-dark">{props.podcast_title}</span>  */}
             <br/>
-            <div className="podcastDescription"> {props.podcast_description}</div>
+            <div className="podcastDescription"><span class="badge badge-primary">{props.podcast_description}</span></div>
             <div className="podcastCreator"><span className="badge badge-dark">Uploaded by {props.podcast_username}</span></div>
-          </div>                   
+                             
           
           <AudioComponent audio_url={props.podcast_audio}/>
           
           <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
             <div>
-              <AiIcons.AiTwotoneLike color="magenta"/> 
+              <AiIcons.AiOutlineLike/> 
               <span>{likes}</span>
             </div>
           </button>

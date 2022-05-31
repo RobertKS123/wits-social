@@ -62,6 +62,7 @@ function Home() {
 
         for (var i = 0; i < array.length; i++){
           const new_array = array[i];
+          
           final_array.push(
           <Podcast //This creates a podcast component for each podcast in the database and sends in all relevant information
             podcast_id = {new_array[0]}

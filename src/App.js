@@ -9,6 +9,7 @@ import BottomNavbar from './components/bottomNavbar/BottomNavbar';
 import Upload from './components/upload/Upload';
 import TopForYou from './pages/home/TopForYou/TopForYou';
 import LandingPage from './pages/landingPage/LandingPage';
+import Trending from './pages/trending/Trending';
 
 
 function App() {
@@ -22,7 +23,7 @@ return (
 		<Route path='/signup' exact  component={Signup}/>
 		<Route path='/login' exact  component={Login}/>
 		<Route path='/home' exact component={Home}/>
-		{/* <Route path='/trending' exact component={Treanding}/>*/}
+		<Route path='/trending' exact component={Trending}/>
 		<Route path='/create' exact  component={Upload}/>
 		{/*<Route path ='/inbox' exact component={Inbox}/> */}
 		<Route path='/account' exact component={Account}/>
