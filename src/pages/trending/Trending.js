@@ -47,7 +47,7 @@ function Trending() {
       const array_json = total_practice_array;
   
       function createPodcastSquares_2(array){ //This is the main function that creates a podcast
-        if (array.length === 0){
+        if (array.length == 0){
           return;
         }
         else{
@@ -55,59 +55,33 @@ function Trending() {
   
           for (var i = 0; i < array.length; i++){
             const new_array = array[i];
-            var prev_new_array = []
             
-            if (i > 0){
-                prev_new_array = array[i-1];
-            }
-
-            if (i === 0){
-                final_array.push(
-                    <Podcast //This creates a podcast component for each podcast in the database and sends in all relevant information
-                      podcast_id = {new_array[0]}
-                      podcast_title = {new_array[1]}
-                      podcast_description =  {new_array[2]}
-                      podcast_audio = {new_array[3]}
-                      podcast_likes = {new_array[4]}
-                      podcast_user_id = {new_array[5]}
-                      podcast_username = {new_array[10]}
-                      podcast_profile_image = {new_array[11]}
-                      podcast_back_image = {new_array[12]}
-                    />
-                    )
-            }
-            else if (new_array[4] > prev_new_array[4]){
-                final_array.unshift(
-                    <Podcast //This creates a podcast component for each podcast in the database and sends in all relevant information
-                      podcast_id = {new_array[0]}
-                      podcast_title = {new_array[1]}
-                      podcast_description =  {new_array[2]}
-                      podcast_audio = {new_array[3]}
-                      podcast_likes = {new_array[4]}
-                      podcast_user_id = {new_array[5]}
-                      podcast_username = {new_array[10]}
-                      podcast_profile_image = {new_array[11]}
-                      podcast_back_image = {new_array[12]}
-                    />
-                )
-            }
-            else{
-                final_array.push(
-                    <Podcast //This creates a podcast component for each podcast in the database and sends in all relevant information
-                      podcast_id = {new_array[0]}
-                      podcast_title = {new_array[1]}
-                      podcast_description =  {new_array[2]}
-                      podcast_audio = {new_array[3]}
-                      podcast_likes = {new_array[4]}
-                      podcast_user_id = {new_array[5]}
-                      podcast_username = {new_array[10]}
-                      podcast_profile_image = {new_array[11]}
-                      podcast_back_image = {new_array[12]}
-                    />
-                    )
-            }
+            final_array.push(
+            <Podcast //This creates a podcast component for each podcast in the database and sends in all relevant information
+              podcast_id = {new_array[0]}
+              podcast_title = {new_array[1]}
+              podcast_description =  {new_array[2]}
+              podcast_audio = {new_array[3]}
+              podcast_likes = {new_array[4]}
+              podcast_user_id = {new_array[5]}
+              podcast_username = {new_array[10]}
+              podcast_profile_image = {new_array[11]}
+              podcast_back_image = {new_array[12]}
+            />
+            )
           }
       }
+
+      final_array.sort (function(a, b) {
+        if (a.props.podcast_likes > b.props.podcast_likes){
+          return -1;
+        }
+        if (a.props.podcast_likes < b.props.podcast_likes){
+          return 1;
+        }
+        return 0;
+      });
+
       return(final_array);
     }
     

@@ -73,7 +73,7 @@ function CommentComponent(props) {
       }
 
     return (
-        <div className="commentScrollBox w3-border">
+        <div className="commentScrollBox">
             <CreateComment podcast_id = {props.podcast_id_comment}/> //
             {createComment(array_json)}
         </div>
