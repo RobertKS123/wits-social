@@ -53,16 +53,11 @@ function Podcast(props) {
     let json_2;
 
     useEffect(() => {
-      console.log("PODCAST_ID = ", props.podcast_id);
-      console.log("user_id = ", state.id);
-
+      
       const response_2 = axios.get(LIKED_BEFORE_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
       var final_response;
-
-      console.log("STRINGIFY RESPONSE = ", JSON.stringify(response_2));
-      console.log("NON RESPONSE = ", response_2);
+      
       response_2.then(function(result){
-        console.log("HERE IS THE RESULT = ", result.data);
         final_response = result.data;
         if (final_response === "liked"){
           setLikesState(true);
