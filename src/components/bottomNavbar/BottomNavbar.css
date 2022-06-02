@@ -1,16 +1,16 @@
-.bottomNavbar{
-    position: fixed;
-    bottom: 0;
-    left: -100%;
-    background-color: #023535;
-    /* height: 50px; */
-    height: 8vh;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    text-align: right;
-    width: 100%;
-}
+    .bottomNavbar{
+        position: fixed;
+        bottom: 0;
+        left: -100%;
+        background-color: #023535;
+        /* height: 50px; */
+        height: 8vh;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-align: right;
+        width: 100%;
+    }
 
 .bottomNavbar.active{
     left: 0;
@@ -28,14 +28,14 @@
     justify-content: space-evenly;
 }
 
-.bottom-nav-item {
-    float: left;
-    size: 10px;
-    white-space: nowrap;
-    align-items: center;
-    margin-top: 3px;
-    padding-top: 4px;
-}
+    .bottom-nav-item {
+        float: left;
+        size: 10px;
+        white-space: nowrap;
+        align-items: center;
+        margin-top: 3px;
+        padding-top: 4px;
+    }
 
 .bottom-nav-item a {
     display: block;
