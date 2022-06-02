@@ -4,6 +4,7 @@ import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import {messageObject} from './MessageObject.js'
 import ChatObject from './ChatObject';
+import axios from '../../api/axios';
 import './Chat.css';
 
 const MESSAGE_REGEX = /^/;
@@ -12,11 +13,12 @@ const CHAT_URL = '';
 // props:  userId,
 //         chatterId,
 //         chatterUserName,
-//         chatterImg,
-//         userImg,
+//         chatterImg, url
+//         userImg, url
 
 const Chat = (props) => {
 
+    //test messages
     let p = new messageObject(1,true,'hello');
     let q = new messageObject(2,false,'hello');
     let r = new messageObject(3,true,'How are you');
@@ -44,31 +46,61 @@ const Chat = (props) => {
         } else {
             setErrMsg('');
         }
+        if(message.length <= 0){
+            setValidMessage(false);
+        }
     }, [message]);
 
+    //show new messages
     useEffect(() => {
-        //get messages as an array or 2 arrays
         console.log('run');
     }, [messageArr]);
 
+    //load messages
+    useEffect(() => {
+        //get messages
+    })
+
+    //send message
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         let temp = new messageObject(6,false,message);
         setMessageArr(messageArr => [...messageArr, temp]);
+        setMessage('');
+        // try {
+        //     //should return the new message only
+        //     const response = await axios.get(CHAT_URL,{params:{userid : props.id, chatterid: props.cid, message : message}});
+
+        //     if (response?.data?.dne == true){
+        //         setErrMsg('user does not exist');
+        //     } else {
+        //         //ture respose into object this should happen in the object
+
+        //         //add object to array
+        //         // let temp = new messageObject(6,false,message);
+        //         // setMessageArr(messageArr => [...messageArr, temp]);
+
+        //         // setMessage('');
+        //     }
+        // } catch (err) {
+        //     if (!err?.response) {
+        //         setErrMsg('No Server Response');
+        //     } else {
+        //         setErrMsg('Message Failed')
+        //     }
+        //     errRef.current.focus();
+        // }
     }
 
     return(
         <div>
             <div className='screen-top'>
-                <Link to='/'>
-                    <div className='button-back'>
-                        <MdIcons.MdOutlineArrowBackIos />
-                    </div>
+                <Link to='/'className='button-back-container'>
+                    <MdIcons.MdOutlineArrowBackIos className='button-back'/>
                 </Link>
-                <div className='chat-name'>
-                    <img src='this.jpg' alt='profile picture'/>
-                    <p><b>Username</b></p>
-                </div>
+                <img src='https://startechies.000webhostapp.com/resources/img/logo.jpeg' alt='profile picture' className='chat-img'/>
+                <p className='chat-username'>Username</p>
             </div>
             <div className='chat-body-outer'>
                 <ChatObject messages={messageArr}/>
@@ -83,9 +115,9 @@ const Chat = (props) => {
                             placeholder='Type a message...'
                             onChange={(e) => setMessage(e.target.value)}
                             value={message}
-                            required
+                            //required
                         />                        
-                        <button disabled={!validMessage}>
+                        <button disabled={!validMessage} className='button-message'>
                             <AiIcons.AiOutlineSend />
                         </button>
                     </form>
