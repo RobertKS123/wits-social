@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, location, parent, useContext, } from "react";
-import './Podcast.css';
+import './CreateComment.css';
 import * as BsIcons from 'react-icons/bs';
 import * as AiIcons from 'react-icons/ai';
 import { AuthContext } from "../../api/AuthProvider";
@@ -15,10 +15,6 @@ function CreateComment(props) {
     const [errMsg, setErrMsg] = useState('');
 
     const [comment, setComments] = useState('');
-
-    useEffect(() => {
-        
-    })
 
     const handleSubmit = async (e) => { //wehn someone presses the like button
         e.preventDefault();
@@ -42,8 +38,8 @@ function CreateComment(props) {
       
           <div className="Create-Comment"> 
             <form onSubmit={handleSubmit}>
-                <div className='input-container'>
-                    <AiIcons.AiOutlineComment className='input-icon' size={25}/>
+                <div className='input-container'> 
+                    <AiIcons.AiOutlineComment className='input-icon_c' size={25}/>
                     <input
                         type="text"
                         id="comments"
@@ -54,7 +50,8 @@ function CreateComment(props) {
                         required
                     />
                 </div>
-                <button>Comment</button>
+                <button >Comment</button>
+                {/* style = {{display: inline}} */}
             </form>
           </div>
     )

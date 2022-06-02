@@ -1,0 +1,33 @@
+.input_container_comment{
+    margin-top: 10px;
+    background-color: #0CABA8;
+    border-radius: 25px;
+    color: white;
+    white-space: nowrap;
+    display: inline;
+    padding-right: 80%;
+}
+
+button {
+    margin-top: 1rem;
+    border-radius: 25px;
+    display: inline;
+    width: 25%;
+    font-size: smaller;
+    background-color: #7cbfbb;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+    size: 10vh;
+}
+
+.input-icon_c {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #015958;
+}

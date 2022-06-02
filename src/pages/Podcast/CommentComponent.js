@@ -16,10 +16,11 @@ function CommentComponent(props) {
         return result;
       }
   
-      
       let json_1;
   
       const [users, setUsers] = useState([]);
+
+      const [commentArray, setCommentArray] = useState([]);
   
       useEffect(() => {
           let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_comments.php'+'?podcast_id='+props.podcast_id_comment;
@@ -61,6 +62,7 @@ function CommentComponent(props) {
   
           for (var i = 0; i < array.length; i++){
             const new_array = array[i];
+
             final_array.push(
             <CommentByUser 
               user_posted = {new_array[9]}

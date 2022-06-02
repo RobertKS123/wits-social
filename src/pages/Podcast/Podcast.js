@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, location, parent, useContext, } from "react";
 import './Podcast.css';
+//import '../../components/login/Signup.css';
 import AudioComponent from "./AudioComponent";
 import CommentComponent from "./CommentComponent";
 import * as AiIcons from 'react-icons/ai';
@@ -90,7 +91,7 @@ function Podcast(props) {
           
           <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
             <div>
-              <FcIcons.FcLike/>
+              <FcIcons.FcLike  className='input-icon' size={30}/>
               <span>{likes}</span>
             </div>
           </button>
@@ -119,7 +120,7 @@ function Podcast(props) {
           
           <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
             <div>
-              <AiIcons.AiOutlineLike/> 
+              <AiIcons.AiOutlineLike className='input-icon' size={30} color={"white"}/> 
               <span>{likes}</span>
             </div>
           </button>

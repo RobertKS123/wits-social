@@ -11,6 +11,22 @@
     
 }
 
+button {
+    margin-top: 1rem;
+    border-radius: 25px;
+    display: inline;
+    width: 30%;
+    background-color: #0CABA8;
+}
+
+.input-icon {
+    margin-left: 40px;
+    margin-right: 10px;
+    color: white;
+    padding: 0%;
+    size: 80%;
+}
+
 .main_card {
     background-color: white;
     border-radius: 4px;
