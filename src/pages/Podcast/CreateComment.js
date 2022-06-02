@@ -35,6 +35,7 @@ function CreateComment(props) {
                 setErrMsg('Comment not inserted')
             }
         }
+        setComments('');
     } 
   
     return(

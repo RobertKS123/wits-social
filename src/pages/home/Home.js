@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 //import "./App.css";
 //import axios from "axios";
 //import { Link } from "react-router-dom";
-//import './Home.css';
+import './Home.css';
 import TopForYou from "./TopForYou/TopForYou";
 import Podcast from "../Podcast/Podcast";
 import GetFunction from "./GetFunction";
@@ -19,6 +19,13 @@ function Home() {
           result.push(json_1_[key]);
       });
       return result;
+    }
+
+    function setInnerHeightOnMobile(){
+      // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+      let vh = window.innerHeight * 0.01;
+      // Then we set the value in the --vh custom property to the root of the document
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
 
     let json_1;
@@ -62,8 +69,8 @@ function Home() {
 
         for (var i = 0; i < array.length; i++){
           const new_array = array[i];
-          
           final_array.push(
+          <div className="inner-podcast-item">
           <Podcast //This creates a podcast component for each podcast in the database and sends in all relevant information
             podcast_id = {new_array[0]}
             podcast_title = {new_array[1]}
@@ -74,7 +81,7 @@ function Home() {
             podcast_username = {new_array[10]}
             podcast_profile_image = {new_array[11]}
             podcast_back_image = {new_array[12]}
-          />
+          /></div>
           )
         }
         return(final_array);
@@ -84,29 +91,21 @@ function Home() {
 
   return ( 
     //<div className="main_card">
-        <div className="container-fluid bg-dark">
-          {createPodcastSquares_2(array_json)}
-          <br/>
-        </div>
+        // <div className="container-fluid bg-dark">
+        //   {createPodcastSquares_2(array_json)}
+        //   <br/>
+        // </div>
+
+        <>
+          <div className="outer-box">
+            <script>{setInnerHeightOnMobile()}</script>
+            {/* <div className="inner-podcast-item"></div> */}
+            {createPodcastSquares_2(array_json)}
+          </div>
+        </>
     //</div>
     //{createPodcastSquares_2(array_json)}
   );
 }
 
 export default Home 
-
-{/* 
-        array_json[0] = Podcast_ID
-        array_json[1] = Podcast_Title
-        array_json[2] = Podcast_Description
-        array_json[3] = Podcast_AudioLink
-        array_json[4] = Podcast_Likes
-        array_json[5] = EndUser_ID
-        array_json[6] = EndUser_FName
-        array_json[7] = EndUser_LName
-        array_json[8] = EndUser_Email
-        array_json[9] = EndUser_Password
-        array_json[10] = EndUser_Username
-        array_json[11] = EndUser_ProfilePicLink
-        array_json[12] = EndUser_BannerLink 
-        */}
