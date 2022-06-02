@@ -38,20 +38,26 @@ function CreateComment(props) {
       
           <div className="Create-Comment"> 
             <form onSubmit={handleSubmit}>
-                <div className='input-container'> 
-                    <AiIcons.AiOutlineComment className='input-icon_c' size={25}/>
-                    <input
-                        type="text"
-                        id="comments"
-                        placeholder='Comment'
-                        autoComplete="off"
-                        onChange={(e) => setComments(e.target.value)}
-                        value={comment}
-                        required
-                    />
+                <div className='comment_input_box'>
+                    <div className='input-container-comment'> 
+                        <AiIcons.AiOutlineComment className='input-icon_c' size={25}/>
+                        <input
+                            type="text"
+                            id="comments"
+                            placeholder='Comment'
+                            autoComplete="off"
+                            onChange={(e) => setComments(e.target.value)}
+                            value={comment}
+                            required
+                        />
+                    </div>
                 </div>
-                <button >Comment</button>
-                {/* style = {{display: inline}} */}
+                <div className='button_1'>
+                    <button style = {{fontSize: 10}} >Comment</button>
+                    {/* style = {{display: inline}} */}
+                </div>
+                
+                
             </form>
           </div>
     )

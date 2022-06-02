@@ -1,4 +1,4 @@
-.input_container_comment{
+.input_container-comment{
     margin-top: 10px;
     background-color: #0CABA8;
     border-radius: 25px;
@@ -13,13 +13,14 @@ button {
     border-radius: 25px;
     display: inline;
     width: 25%;
-    font-size: smaller;
+    font-size: 80px;
     background-color: #7cbfbb;
 }
 
 form {
     display: flex;
     flex-direction: row;
+    display: inline;
     justify-content: space-evenly;
     flex-grow: 1;
     padding-bottom: 1rem;
@@ -30,4 +31,13 @@ form {
     margin-left: 10px;
     margin-right: 10px;
     color: #015958;
+}
+
+.comment_input_box {
+    display: inline;
+}
+
+.button_1 {
+    display: inline;
+    width: 10%;
 }
