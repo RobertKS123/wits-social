@@ -6,9 +6,11 @@ import {messageObject} from './MessageObject.js'
 import ChatObject from './ChatObject';
 import axios from '../../../api/axios';
 import './Chat.css';
+import { AuthContext } from '../../../api/AuthProvider';
 
 const MESSAGE_REGEX = /^/;
 const CHAT_URL = '';
+const SEND_URL = '/direct_messaging/insert_direct_message.php';
 
 // props:  userId,
 //         chatterId,
@@ -19,13 +21,15 @@ const CHAT_URL = '';
 const Chat = (props) => {
 
     //test messages
-    let p = new messageObject(1,true,'hello');
-    let q = new messageObject(2,false,'hello');
-    let r = new messageObject(3,true,'How are you');
-    let s = new messageObject(4,false,'good and you');
-    let t = new messageObject(5,true,'good');
+    let p = new messageObject(1,true,'hello','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
+    let q = new messageObject(2,false,'hello','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
+    let r = new messageObject(3,true,'How are you','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
+    let s = new messageObject(4,false,'good and you','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
+    let t = new messageObject(5,true,'good','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
 
-    let arr1 = [p,q,r,s,t]
+    let arr1 = [p,q,r,s,t];
+
+    const [state] = useContext(AuthContext);
 
     const [chatName, setChatName] = useState('');
     const [chatPic, setChatPic] = useState('');
@@ -53,7 +57,6 @@ const Chat = (props) => {
 
     //show new messages
     useEffect(() => {
-        console.log('run');
     }, [messageArr]);
 
     //load messages
@@ -64,33 +67,38 @@ const Chat = (props) => {
     //send message
     const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            //const response = await axios.get(SEND_URL,{params:{sender_user_id : props.user.id, recipient_user_id : props.chat.id, message_body : message}});
+            const response = await axios.get(SEND_URL,{params:{sender_user_id : 31, recipient_user_id : 39, message_body : message}});
 
-        let temp = new messageObject(6,false,message);
-        setMessageArr(messageArr => [...messageArr, temp]);
-        setMessage('');
-        // try {
-        //     //should return the new message only
-        //     const response = await axios.get(CHAT_URL,{params:{userid : props.id, chatterid: props.cid, message : message}});
+            console.log(JSON.stringify(response?.data));
 
-        //     if (response?.data?.dne == true){
-        //         setErrMsg('user does not exist');
-        //     } else {
-        //         //ture respose into object this should happen in the object
+            if (response?.data === 301){
+                setErrMsg('some thing went wrong');
+            } else {
+                let l = response.data[0];
+                console.log(JSON.stringify(l));
+                let tempId = l.Direct_Message_ID;
+                let tempMessage = l.Message_Body;
+                let tempSrc = true;
+                //let tempImg = props.user.img;
+                //if (l.Sender_UserID !== state.id){tempSrc = false; tempImg = props.chat.img};
+                let tempImg = 'https://startechies.000webhostapp.com/resources/img/logo.jpeg';
+                if (l.Sender_UserID !== 31){tempSrc = false; tempImg = null};
+                let temp = new messageObject(tempId, tempSrc, tempMessage, tempImg);
 
-        //         //add object to array
-        //         // let temp = new messageObject(6,false,message);
-        //         // setMessageArr(messageArr => [...messageArr, temp]);
+                setMessageArr(messageArr => [...messageArr,temp]);
 
-        //         // setMessage('');
-        //     }
-        // } catch (err) {
-        //     if (!err?.response) {
-        //         setErrMsg('No Server Response');
-        //     } else {
-        //         setErrMsg('Message Failed')
-        //     }
-        //     errRef.current.focus();
-        // }
+                setMessage('');
+            }
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else {
+                setErrMsg('Message Failed')
+            }
+            errRef.current.focus();
+        }
     }
 
     return(
@@ -106,22 +114,26 @@ const Chat = (props) => {
                 <ChatObject messages={messageArr}/>
             </div>
             <div className='message-send'>
-                <div className='message-enter'>
-                    <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
-                        <textarea
-                            type='text'
-                            id='message'
-                            placeholder='Type a message...'
-                            onChange={(e) => setMessage(e.target.value)}
-                            value={message}
-                            //required
-                        />                        
-                        <button disabled={!validMessage} className='button-message'>
-                            <AiIcons.AiOutlineSend />
-                        </button>
-                    </form>
-                </div>                
+                    <div className='send-message-outer'>
+                        <div className='send-message-inner'>
+                            <textarea
+                                type='text'
+                                id='message'
+                                placeholder='Type a message...'
+                                onChange={(e) => setMessage(e.target.value)}
+                                value={message}
+                                //required
+                            />                        
+                        </div>
+                        <div>
+                            <button disabled={!validMessage} className='button-message'>
+                                <AiIcons.AiOutlineSend />
+                            </button>
+                        </div>
+                    </div>
+                </form>              
             </div>
         </div>
     )
