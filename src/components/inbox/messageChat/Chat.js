@@ -4,7 +4,7 @@ import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import {messageObject} from './MessageObject.js'
 import ChatObject from './ChatObject';
-import axios from '../../api/axios';
+import axios from '../../../api/axios';
 import './Chat.css';
 
 const MESSAGE_REGEX = /^/;

@@ -3,6 +3,7 @@ import { messageObject } from './MessageObject';
 
 const ChatObject = (props) => {
     let messages = props.messages;
+
     return(
         <div>
             <ul className='chat-body'>
