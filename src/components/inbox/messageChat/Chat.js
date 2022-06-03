@@ -9,7 +9,7 @@ import './Chat.css';
 import { AuthContext } from '../../../api/AuthProvider';
 
 const MESSAGE_REGEX = /^/;
-const CHAT_URL = '';
+const MESSAGES_URL = '/direct_messaging/fetch_messages.php';
 const SEND_URL = '/direct_messaging/insert_direct_message.php';
 
 // props:  userId,
@@ -20,21 +20,13 @@ const SEND_URL = '/direct_messaging/insert_direct_message.php';
 
 const Chat = (props) => {
 
-    //test messages
-    let p = new messageObject(1,true,'hello','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
-    let q = new messageObject(2,false,'hello','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
-    let r = new messageObject(3,true,'How are you','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
-    let s = new messageObject(4,false,'good and you','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
-    let t = new messageObject(5,true,'good','https://startechies.000webhostapp.com/resources/img/logo.jpeg');
-
-    let arr1 = [p,q,r,s,t];
 
     const [state] = useContext(AuthContext);
 
     const [chatName, setChatName] = useState('');
     const [chatPic, setChatPic] = useState('');
 
-    const [messageArr, setMessageArr] = useState(arr1);
+    const [messageArr, setMessageArr] = useState([]);
 
     const [message, setMessage] = useState('');
     const [validMessage, setValidMessage] = useState(false);
@@ -61,8 +53,41 @@ const Chat = (props) => {
 
     //load messages
     useEffect(() => {
-        //get messages
-    })
+        console.log('here');
+        const fetchMessages = async () => {
+            try {
+                //const response = await axios.get(MESSAGES_URL,{params:{logged_in_user_id : props.user.id, chatting_with_id: props.user.id}});
+                const response = await axios.get(MESSAGES_URL,{params:{logged_in_user_id : 31, chatting_with_id : 39}});
+                if (response?.data === 301){
+                    setErrMsg('some thing went wrong'); //make this not an error
+                } else {
+                    //[{"Direct_Message_ID":1,"Sender_UserID":31,"Receiver_UserID":39,"Message_TimeSent":"2022-06-03 13:36:56","Message_Body":"Hi, how are you"}
+                    let d = response?.data;
+                    console.log(JSON.stringify(d));
+                    for (let i = 0; i<d.length;i++){
+                        let tempId = d[i].Direct_Message_ID;
+                        let tempMessage = d[i].Message_Body;
+                        let tempSrc = true;
+                        let tempImg = 'https://startechies.000webhostapp.com/resources/img/logo.jpeg';
+                    if (d[i].Sender_UserID !== 31){tempSrc = false; tempImg = null};
+                    let temp = new messageObject(tempId, tempSrc, tempMessage, tempImg);
+                    setMessageArr(messageArr => [...messageArr,temp]);
+                    }
+                }
+            } catch (e) {
+                if (!e?.response) {
+                    setErrMsg('No Server Response');
+                } else {
+                    setErrMsg('Message Failed')
+                }
+            }
+        }
+        try {
+            fetchMessages();           
+        } catch (err) {
+            console.log(err);
+        }
+    }, [])
 
     //send message
     const handleSubmit = async (e) => {
