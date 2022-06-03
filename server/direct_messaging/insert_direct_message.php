@@ -52,9 +52,32 @@
         //Execute
         mysqli_stmt_execute($prepState);
     
-        //Get last inserted id
+        //Get last inserted id - for DirectMessages table
         $last_id = mysqli_insert_id($link);
         //echo "New record created successfully. Last inserted ID is: " . $last_id;
+        
+        //This block must insert record into DMExist table if no such record  exists for the two users communicating and must not insert anything into the DMExist table if the two have communicated before.
+        
+        //1. First check if a record exists in DMExist table
+        $query_communicatedBefore = "SELECT * FROM ST_DMExists WHERE (User_One_ID=? AND User_Two_ID=?) OR (User_One_ID=? AND User_Two_ID=?);";
+        $prepState_communicatedBefore = mysqli_stmt_init($link);
+        mysqli_stmt_prepare($prepState_communicatedBefore,$query_communicatedBefore);
+        mysqli_stmt_bind_param($prepState_communicatedBefore, "iiii", $sender_user_id,$recipient_user_id,$recipient_user_id,$sender_user_id);
+        mysqli_stmt_execute($prepState_communicatedBefore);
+        $communicatedBeforeResultSet = mysqli_stmt_get_result($prepState_communicatedBefore);
+        if(mysqli_num_rows($communicatedBeforeResultSet)==0){
+            //They have not communicated before, therefore add a record of them to DMExists table
+            $query_insertCommunicatedBefore = "INSERT INTO ST_DMExists(User_One_ID,User_Two_ID) VALUES(?,?);";
+            $prepState_insertCommunicatedBefore = mysqli_stmt_init($link);
+            mysqli_stmt_prepare($prepState_insertCommunicatedBefore,$query_insertCommunicatedBefore);
+            mysqli_stmt_bind_param($prepState_insertCommunicatedBefore, "ii", $sender_user_id,$recipient_user_id);
+            mysqli_stmt_execute($prepState_insertCommunicatedBefore);
+        }
+        else{
+            //They have communicated before, therefore DONT add record of this to DMExists table
+            //ie. Do nothing
+        }
+        
 
         //Return last inserted record
         $query_lastRecord = "SELECT * FROM ST_DirectMessages WHERE Direct_Message_ID=?;";
