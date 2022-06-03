@@ -6,6 +6,7 @@ import { AuthContext } from "../../api/AuthProvider";
 import axios from '../../api/axios';
 import CommentByUser from "./CommentByUser";
 
+
 const COMMENTS_URL = '/podcast_scripts/insert_podcast_comment.php'; //link to database
 
 function CreateComment(props) {
@@ -31,7 +32,12 @@ function CreateComment(props) {
                 setErrMsg('Comment not inserted')
             }
         }
+
+        console.log("evalue = ", comment);
+
         setComments('');
+
+        
     } 
   
     return(

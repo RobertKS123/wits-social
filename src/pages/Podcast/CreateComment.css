@@ -14,7 +14,7 @@ button {
     display: inline;
     width: 25%;
     font-size: 80px;
-    background-color: #7cbfbb;
+    background-color: #015958;
 }
 
 form {
@@ -39,5 +39,6 @@ form {
 
 .button_1 {
     display: inline;
-    width: 10%;
+    width: 30%;
+    color: #015958;
 }

@@ -30,7 +30,7 @@ function Trending() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_list.php/'; //Link to the database that displays all podcasts and their information
+        let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_trending_podcast_list.php/'; //Link to the database that displays all podcasts and their information
         fetch(url)
         .then(res => res.json())
         .then((out) => { //This is a json object

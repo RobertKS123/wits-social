@@ -91,8 +91,8 @@ function Podcast(props) {
           
           <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
             <div>
-              <FcIcons.FcLike  className='input-icon' size={30}/>
-              <span>{likes}</span>
+              <FcIcons.FcLike  className='input-icon' size={25}/>
+              <span style={{fontSize: 28}}>{likes}</span>
             </div>
           </button>
         <CommentComponent podcast_id_comment = {props.podcast_id}/>
@@ -120,8 +120,8 @@ function Podcast(props) {
           
           <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
             <div>
-              <AiIcons.AiOutlineLike className='input-icon' size={30} color={"white"}/> 
-              <span>{likes}</span>
+              <AiIcons.AiOutlineLike className='input-icon' size={25} color={"white"}/> 
+              <span style={{fontSize: 28}}>{likes}</span>
             </div>
           </button>
         <CommentComponent podcast_id_comment = {props.podcast_id}/>

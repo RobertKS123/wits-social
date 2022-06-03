@@ -83,9 +83,10 @@ button {
 .likes {
     background-color: transparent;
     color: white;
-    margin-left: 55%;
+    margin-left: 70%;
     padding: 0;
     height: 0.14rem;
+    margin-top: -8%;
     
 }
 
