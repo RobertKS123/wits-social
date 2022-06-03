@@ -37,8 +37,9 @@ p.chat-username {
 
 .chat-body-outer {
     overflow-y: scroll;
-    max-height: 72vh;
+    max-height: 70vh;
     width: 100%;
+    position: relative;
 }
 
 .chat-text-outer {
@@ -46,6 +47,8 @@ p.chat-username {
     margin-top: 1.5vh;
     margin-left: 5px;
     margin-right: 5px;
+    position: relative;
+    bottom: 0;
 }
 
 .user-text {
@@ -74,11 +77,13 @@ p.chat-username {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row-reverse;
+    width: 70vw;
 }
 
 .user-test-inner{
     display: flex;
     flex-wrap: nowrap;
+    width: 70vw;
 }
 
 .message-text{
@@ -88,6 +93,7 @@ p.chat-username {
     margin-bottom: auto;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    overflow-y: scroll;
 }
 
 .user-container-outer{
