@@ -96,4 +96,23 @@ require_once '../db_config.php';
     //Output response data
     echo json_encode($response_data);
 
+    //Sources:
+    /*
+    https://www.w3schools.com/php/func_array_sizeof.asp
+
+    https://stackoverflow.com/questions/1464919/what-is-unexpected-t-variable-in-php
+
+    https://phpdelusions.net/mysqli_examples/like
+
+    https://stackoverflow.com/questions/43528904/how-to-echo-json-object-properties-in-php
+
+    https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_wildcard_percent_pattern
+
+    https://www.w3schools.com/sql/sql_wildcards.asp
+
+    https://www.w3schools.com/sql/sql_like.asp
+
+    https://www.w3schools.com/php/php_mysql_insert_lastid.asp
+    */
+
 ?>
