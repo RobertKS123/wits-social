@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { LOGIN } from "./Constants"
+import { LOGIN, CHAT } from "./Constants"
 
 export const AuthContext = createContext();
 
@@ -8,6 +8,7 @@ const { Provider } = AuthContext;
 const initialState = {
     id : 0,
     nav : false,
+    chatId : 0
 }
 
 function reducer(state,action){
@@ -16,6 +17,12 @@ function reducer(state,action){
             return {
                 id : action.payload,
                 nav : true,
+            }
+        case CHAT:
+            return {
+                id : state.id,
+                nav : true,
+                chat : action.payload,
             }
         default:
             throw new Error();

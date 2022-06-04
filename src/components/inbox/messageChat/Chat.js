@@ -1,16 +1,18 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
 import * as MdIcons from 'react-icons/md';
 import * as AiIcons from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {messageObject} from './MessageObject.js'
 import ChatObject from './ChatObject';
 import axios from '../../../api/axios';
 import './Chat.css';
 import { AuthContext } from '../../../api/AuthProvider';
+import { ChatContact } from '../ChatContact.js';
 
 const MESSAGE_REGEX = /^/;
 const MESSAGES_URL = '/direct_messaging/fetch_messages.php';
 const SEND_URL = '/direct_messaging/insert_direct_message.php';
+const USER_DATA_URL = '/direct_messaging/get_user_info.php';
 
 // props:  userId,
 //         chatterId,
@@ -18,13 +20,18 @@ const SEND_URL = '/direct_messaging/insert_direct_message.php';
 //         chatterImg, url
 //         userImg, url
 
-const Chat = (props) => {
-
+const Chat = () => {
 
     const [state] = useContext(AuthContext);
 
-    const [chatName, setChatName] = useState('');
-    const [chatPic, setChatPic] = useState('');
+    //console.log(state.id);
+    //console.log(state.chat);
+
+    const [userData, setUserData] = useState({});
+
+    const [chatData, setChatData] = useState({});
+
+    const [change, setChange] = useState(0);
 
     const [messageArr, setMessageArr] = useState([]);
 
@@ -47,46 +54,58 @@ const Chat = (props) => {
         }
     }, [message]);
 
-    //show new messages
     useEffect(() => {
-    }, [messageArr]);
-
-    //load messages
-    useEffect(() => {
-        console.log('here');
-        const fetchMessages = async () => {
+        const fetchData = async () => {
+            let response2;
+            let img1;
+            let img2;
             try {
-                //const response = await axios.get(MESSAGES_URL,{params:{logged_in_user_id : props.user.id, chatting_with_id: props.user.id}});
-                const response = await axios.get(MESSAGES_URL,{params:{logged_in_user_id : 31, chatting_with_id : 39}});
-                if (response?.data === 301){
-                    setErrMsg('some thing went wrong'); //make this not an error
-                } else {
-                    //[{"Direct_Message_ID":1,"Sender_UserID":31,"Receiver_UserID":39,"Message_TimeSent":"2022-06-03 13:36:56","Message_Body":"Hi, how are you"}
-                    let d = response?.data;
-                    console.log(JSON.stringify(d));
-                    for (let i = 0; i<d.length;i++){
-                        let tempId = d[i].Direct_Message_ID;
-                        let tempMessage = d[i].Message_Body;
-                        let tempSrc = true;
-                        let tempImg = 'https://startechies.000webhostapp.com/resources/img/logo.jpeg';
-                    if (d[i].Sender_UserID !== 31){tempSrc = false; tempImg = null};
-                    let temp = new messageObject(tempId, tempSrc, tempMessage, tempImg);
-                    setMessageArr(messageArr => [...messageArr,temp]);
-                    }
-                }
+                const response = await axios.get(USER_DATA_URL,{params:{user_id : 31}});
+                    let d = response?.data[0];
+                    let tempUser = new ChatContact(d.EndUser_ID, d.EndUser_Username, d.EndUser_ProfilePicLink);//chage to state.id
+                    img1 = d.EndUser_ProfilePicLink;
+                    setUserData(tempUser);
             } catch (e) {
                 if (!e?.response) {
-                    setErrMsg('No Server Response');
+                    setErrMsg('No Server Response1');
                 } else {
                     setErrMsg('Message Failed')
                 }
             }
-        }
-        try {
-            fetchMessages();           
-        } catch (err) {
-            console.log(err);
-        }
+            try {
+                const response1 = await axios.get(USER_DATA_URL,{params:{user_id : 39}});
+                    let d1 = response1?.data[0];
+                    let tempUser1 = new ChatContact(d1.EndUser_ID, d1.EndUser_Username, d1.EndUser_ProfilePicLink);//chage to state.id
+                    img2 = d1.EndUser_ProfilePicLink;               
+                    setChatData(tempUser1);
+            } catch (e) {
+                if (!e?.response) {
+                    setErrMsg('No Server Response2');
+                } else {
+                    setErrMsg('Message Failed')
+                }
+            }
+            try {
+                response2 = await axios.get(MESSAGES_URL,{params:{logged_in_user_id : 31, chatting_with_id : 39}});
+            } catch (e) {
+                if (!e?.response) {
+                    setErrMsg('No Server Response3');
+                } else {
+                    setErrMsg('Message Failed')
+                }
+            }
+            let d2 = response2.data;
+                for (let i = 0; i<d2.length;i++){
+                    let tempId = d2[i].Direct_Message_ID;
+                    let tempMessage = d2[i].Message_Body;
+                    let tempSrc = true;
+                    let tempImg = img1;
+                    if (d2[i].Sender_UserID !== 31){tempSrc = false; tempImg = img2;}; //state.id
+                    let temp = new messageObject(tempId, tempSrc, tempMessage, tempImg);
+                    setMessageArr(messageArr => [...messageArr,temp]);
+                }
+        }      
+        fetchData();
     }, [])
 
     //send message
@@ -108,8 +127,9 @@ const Chat = (props) => {
                 let tempSrc = true;
                 //let tempImg = props.user.img;
                 //if (l.Sender_UserID !== state.id){tempSrc = false; tempImg = props.chat.img};
-                let tempImg = 'https://startechies.000webhostapp.com/resources/img/logo.jpeg';
-                if (l.Sender_UserID !== 31){tempSrc = false; tempImg = null};
+                let tempImg = userData.img;
+                console.log(userData.img);
+                if (l.Sender_UserID !== 31){tempSrc = false; tempImg = chatData.img};
                 let temp = new messageObject(tempId, tempSrc, tempMessage, tempImg);
 
                 setMessageArr(messageArr => [...messageArr,temp]);
@@ -132,8 +152,8 @@ const Chat = (props) => {
                 <Link to='/'className='button-back-container'>
                     <MdIcons.MdOutlineArrowBackIos className='button-back'/>
                 </Link>
-                <img src='https://startechies.000webhostapp.com/resources/img/logo.jpeg' alt='profile picture' className='chat-img'/>
-                <p className='chat-username'>Username</p>
+                <img src={chatData.img} alt='profile picture' className='chat-img'/>
+                <p className='chat-username'>{chatData.username}</p>
             </div>
             <div className='chat-body-outer'>
                 <ChatObject messages={messageArr}/>

@@ -7,9 +7,10 @@ import Account from './pages/account/manage/ManageAccount';
 import Login from './components/login/Login';
 import BottomNavbar from './components/bottomNavbar/BottomNavbar';
 import Upload from './components/upload/Upload';
-import Chat from './components/messageChat/Chat';
+import Chat from './components/inbox/messageChat/Chat';
 import TopForYou from './pages/home/TopForYou/TopForYou';
 import LandingPage from './pages/landingPage/LandingPage';
+import Inbox from './components/inbox/Inbox';
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
 return (
 	<>  		
 		<Router>
-		<Route path='/' exact  component={Chat}/>
+		<Route path='/' exact  component={Inbox}/>
+		<Route path='/chat' exact  component={Chat}/>
 		<BottomNavbar />
 		<Route path='/L' exact component={LandingPage} />
 		<Route path='/signup' exact  component={Signup}/>
@@ -25,7 +27,7 @@ return (
 		<Route path='/home' exact component={Home}/>
 		{/* <Route path='/trending' exact component={Treanding}/>*/}
 		<Route path='/create' exact  component={Upload}/>
-		{/*<Route path ='/inbox' exact component={Inbox}/> */}
+		{<Route path ='/inbox' exact component={Inbox}/> }
 		<Route path='/account' exact component={Account}/>
 		</Router>     
 	</>
