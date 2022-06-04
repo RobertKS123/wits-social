@@ -43,8 +43,8 @@ button {
 .profilePic{
     /* width: 70%;
     height:40%; */
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -76,22 +76,14 @@ button {
     margin-bottom: 20px;
 }
 
-/* a{
-    margin-left: 40%;
-} */
-
 .likes {
     background-color: transparent;
     color: white;
-    margin-left: 70%;
-    padding: 0;
-    height: 0.14rem;
-    margin-top: -8%;
-    
 }
 
 .likes.active {
-    color: '#ff69b4';
+    color: #ff69b4;
+    transition: 0ms;
 }
 
 .truth{
