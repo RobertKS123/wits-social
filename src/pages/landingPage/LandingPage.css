@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,9 +13,9 @@ html {
 body {
     min-height: 80vh;
     background-color: #ffff; 
-}
+} */
 
-.App {
+/* .App {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,6 +36,19 @@ section {
     background-color: white;
     color: #015958;
     position: relative;
+} */
+
+.landing-button-outer {
+    align-self: flex-end;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    background-color: #0CABA8;
+    padding: 0.25rem;
+    border-radius: 25px;
+    color: white;
+    white-space: nowrap;
 }
 
 .button-container{ 
@@ -46,18 +59,7 @@ section {
 }
 
 
-.landing-button-outer {
-    align-self: flex-end;
-    margin-top: 10px;
-    background-color: #0CABA8;
-    padding: 0.25rem;
-    border-radius: 25px;
-    color: white;
-    white-space: nowrap;
-}
-
 .landing-button-inner{
-    
     border-radius: 25px;
     font-size: 22px;
     padding: 0.25rem;
@@ -65,8 +67,8 @@ section {
     border-style: none;
     color: white;
     width: 70%;
-    
-    
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .landing-icon {
