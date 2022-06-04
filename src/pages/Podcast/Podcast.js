@@ -99,36 +99,36 @@ function Podcast(props) {
             </div>
         )
     } else { //this means unliked
-    return(
-        <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
-            <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
-            <div className="podcastTitle">
-                <span className="badge badge-pill badge-light podcastTitle">
-                    {props.podcast_title}
-                </span>
-            </div>
-            <div className="podcastDescription">
-                <span class="badge badge-primary">
-                    {props.podcast_description}
-                </span>
-            </div>
-            <div className="podcastCreator">
-                <span className="badge badge-dark">
-                    Uploaded by {props.podcast_username}
-                </span>
-            </div>          
-            <AudioComponent audio_url={props.podcast_audio}/>
-            <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
-                <div>
-                    <AiIcons.AiOutlineLike className='input-icon' size={25} color={"white"}/> 
-                    <span style={{fontSize: 28}}>
-                        {likes}
+        return(
+            <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
+                <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
+                <div className="podcastTitle">
+                    <span className="badge badge-pill badge-light podcastTitle">
+                        {props.podcast_title}
                     </span>
                 </div>
-            </button>
-            <CommentComponent podcast_id_comment = {props.podcast_id}/>
-        </div>
-    )
+                <div className="podcastDescription">
+                    <span class="badge badge-primary">
+                        {props.podcast_description}
+                    </span>
+                </div>
+                <div className="podcastCreator">
+                    <span className="badge badge-dark">
+                        Uploaded by {props.podcast_username}
+                    </span>
+                </div>          
+                <AudioComponent audio_url={props.podcast_audio}/>
+                <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
+                    <div>
+                        <AiIcons.AiOutlineLike className='input-icon' size={25} color={"white"}/> 
+                        <span style={{fontSize: 28}}>
+                            {likes}
+                        </span>
+                    </div>
+                </button>
+                <CommentComponent podcast_id_comment = {props.podcast_id}/>
+            </div>
+        )
     }
 }
 
