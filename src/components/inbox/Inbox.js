@@ -150,16 +150,18 @@ const Inbox = () => {
                     <p>{defaultMessage}</p>
                 </div>
             ) : (
-                <div className='chat-list'>                    
-                    <ul>
-                        {chats.map((chat) => {
-                            return(
-                                <li key={chat.id}>
-                                    <ChatBox user={user} chat={chat}/>                                
-                                </li>
-                            )
-                        })}
-                    </ul>
+                <div className='chat-list'>  
+                    <div className='chat-list-inner'>
+                        <ul>
+                            {chats.map((chat) => {
+                                return(
+                                    <li key={chat.id}>
+                                        <ChatBox user={user} chat={chat}/>                                
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </div>                 
                 </div>
             )}
 

@@ -8,6 +8,9 @@
     flex-wrap: nowrap;
     padding: 0;
     margin: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .search-bar-outer {
@@ -90,14 +93,22 @@ button.search-button{
 /* Chats */
 
 .chat-list {
-    margin-top: 10px;
+    top:60px;
+    position: relative;
+    overflow-y: scroll;
+    width: 100%;
+    height: 550px;
+}
+
+.chat-list-inner{
+    overflow-y: scroll;
 }
 
 .chat-outer{
     margin-top: 2px;
-    margin-left: 20px;
+    margin-left: 40px;
     height: 70px;
-    margin-right: 20px;
+    margin-right: 40px;
 }
 
 .chat-inner{
