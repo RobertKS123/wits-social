@@ -3,13 +3,11 @@ import { useEffect, useState, useContext } from "react";
 //import "./App.css";
 //import axios from "axios";
 //import { Link } from "react-router-dom";
-import './Home.css';
-import TopForYou from "./TopForYou/TopForYou";
+import '../home/Home.css';
 import Podcast from "../Podcast/Podcast";
-import GetFunction from "./GetFunction";
 import { AuthContext } from '../../api/AuthProvider';
 
-function Home() {
+function Trending() {
     const [state]  = useContext(AuthContext);
 
     function json2array(json_1_){  //This function is used to convert from json objects into an array
@@ -32,7 +30,7 @@ function Home() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_list.php/'; //Link to the database that displays all podcasts and their information
+        let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_trending_podcast_list.php/'; //Link to the database that displays all podcasts and their information
         fetch(url)
         .then(res => res.json())
         .then((out) => { //This is a json object
@@ -61,7 +59,7 @@ function Home() {
     const array_json = total_practice_array;
 
     function createPodcastSquares_2(array){ //This is the main function that creates a podcast
-      if (array.length == 0){
+      if (array.length === 0){
         return;
       }
       else{
@@ -84,6 +82,7 @@ function Home() {
           /></div>
           )
         }
+
         return(final_array);
       }
     }
@@ -108,4 +107,4 @@ function Home() {
   );
 }
 
-export default Home 
+export default Trending 

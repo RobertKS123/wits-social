@@ -12,9 +12,12 @@
     font-family: sans-serif;
     margin: 0rem;
     width: 100%;
-    background-color: #ffffff;
+    /* height: 100vh; */
+    background-color: #000000;
+
+    
   }
-  
+
   h1, h2 {
     color: #333333;
     text-align: center;
@@ -122,3 +125,24 @@
     top: 0;
     left: 0;
   }
+
+  .outer-box{
+    width: 100%;
+    /* height: 92vh;  */
+    height: calc(var(--vh, 1vh) * 92);
+    background-color: #023535;
+    scroll-snap-type: y mandatory;
+    overflow-y:auto;
+    /* scroll-padding: 10px; */
+    /* scroll-snap-stop:always; */
+  }
+
+  .inner-podcast-item{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    background-color: #023535;
+  }
+
+  

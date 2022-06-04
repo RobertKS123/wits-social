@@ -1,0 +1,44 @@
+.input_container-comment{
+    margin-top: 10px;
+    background-color: #0CABA8;
+    border-radius: 25px;
+    color: white;
+    white-space: nowrap;
+    display: inline;
+    padding-right: 80%;
+}
+
+button {
+    margin-top: 1rem;
+    border-radius: 25px;
+    display: inline;
+    width: 25%;
+    font-size: 80px;
+    background-color: #015958;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    display: inline;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+    size: 10vh;
+}
+
+.input-icon_c {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #015958;
+}
+
+.comment_input_box {
+    display: inline;
+}
+
+.button_1 {
+    display: inline;
+    width: 30%;
+    color: #015958;
+}

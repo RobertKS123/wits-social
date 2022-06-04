@@ -10,7 +10,7 @@ import Upload from './components/upload/Upload';
 import Chat from './components/inbox/messageChat/Chat';
 import TopForYou from './pages/home/TopForYou/TopForYou';
 import LandingPage from './pages/landingPage/LandingPage';
-import Inbox from './components/inbox/Inbox';
+import Trending from './pages/trending/Trending';
 
 
 function App() {
@@ -18,13 +18,12 @@ function App() {
 return (
 	<>  		
 		<Router>
-		
 		<BottomNavbar />
 		<Route path='/' exact component={LandingPage} />
 		<Route path='/signup' exact  component={Signup}/>
 		<Route path='/login' exact  component={Login}/>
 		<Route path='/home' exact component={Home}/>
-		{/* <Route path='/trending' exact component={Treanding}/>*/}		
+		<Route path='/trending' exact component={Trending}/>
 		<Route path='/create' exact  component={Upload}/>
 		<Route path ='/inbox' exact component={Inbox}/>
 		<Route path='/chat' exact  component={Chat}/>

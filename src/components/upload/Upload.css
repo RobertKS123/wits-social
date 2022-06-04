@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +7,6 @@
     margin-left: 0%;
     margin-right: 0%;
     padding: 0;
-    
 }
 
 .input-container{
@@ -17,7 +18,7 @@
     white-space: nowrap;
 }
 
-input[type="text"],
+/* input[type="text"], */
 input[type="file"],
 textarea {
     font-size: 22px;
@@ -26,7 +27,7 @@ textarea {
     background-color: #0CABA8;
     border-style: none;
     color: white;
-    width: 70%;
+    width: 90%;
 }
 
 .file-name{
@@ -36,7 +37,7 @@ textarea {
     background-color: #0CABA8;
     border-style: none;
     color: white;
-    width: 90%;
+    width: 120%;
 }
 
 button{

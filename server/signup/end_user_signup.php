@@ -150,11 +150,13 @@
 	    
 	    
 	    //Insert user details:
-	    $query_insert = "INSERT INTO ST_EndUsers(EndUser_Email, EndUser_Password, EndUser_Username) VALUES(?,?,?)";
+	    $query_insert = "INSERT INTO ST_EndUsers(EndUser_Email,EndUser_Password,EndUser_Username,EndUser_ProfilePicLink,EndUser_BannerLink) VALUES(?,?,?,?,?);";
 	    $hashed_password_to_insert = password_hash($password, PASSWORD_DEFAULT);
 		$prepState_detailsInsertion = mysqli_stmt_init($link);
 		mysqli_stmt_prepare($prepState_detailsInsertion,$query_insert);
-		mysqli_stmt_bind_param($prepState_detailsInsertion, "sss", $email, $hashed_password_to_insert, $username );
+		$default_profile_pic = "https://startechies.000webhostapp.com/end_users/profile_pictures/default_profilePic/defaultprofilepic.jpg";
+		$default_user_banner = "https://startechies.000webhostapp.com/end_users/banners/default_userBanner/defaultbanner.jpg";
+		mysqli_stmt_bind_param($prepState_detailsInsertion, "sssss", $email, $hashed_password_to_insert, $username,$default_profile_pic,$default_user_banner );
 		mysqli_stmt_execute($prepState_detailsInsertion);
 		
 		//Registration is success:

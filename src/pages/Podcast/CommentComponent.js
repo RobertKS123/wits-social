@@ -2,7 +2,7 @@ import React, { Component, useContext } from "react";
 import './CommentComponent.css';
 import CommentByUser from "./CommentByUser";
 import { useEffect, useState } from "react";
-
+import CreateComment from "./CreateComment";
 
 
 function CommentComponent(props) {
@@ -16,10 +16,11 @@ function CommentComponent(props) {
         return result;
       }
   
-      
       let json_1;
   
       const [users, setUsers] = useState([]);
+
+      const [commentArray, setCommentArray] = useState([]);
   
       useEffect(() => {
           let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_comments.php'+'?podcast_id='+props.podcast_id_comment;
@@ -61,6 +62,7 @@ function CommentComponent(props) {
   
           for (var i = 0; i < array.length; i++){
             const new_array = array[i];
+
             final_array.push(
             <CommentByUser 
               user_posted = {new_array[9]}
@@ -73,7 +75,8 @@ function CommentComponent(props) {
       }
 
     return (
-        <div className="commentScrollBox w3-border">
+        <div className="commentScrollBox">
+            <CreateComment podcast_id = {props.podcast_id_comment}/> 
             {createComment(array_json)}
         </div>
     )
