@@ -3,87 +3,62 @@ import './CommentComponent.css';
 import CommentByUser from "./CommentByUser";
 import { useEffect, useState } from "react";
 import CreateComment from "./CreateComment";
+import axios from "../../api/axios";
+import {CommentObject} from './CommentObject';
+import LikeComponent from "./LikeComponent";
 
+const COMMENT_URL = '/podcast_scripts/fetch_podcast_comments.php';
 
-function CommentComponent(props) {
+const CommentComponent = (props) => {
 
-    function json2array(json_1_){
-        var result = [];
-        var keys = Object.keys(json_1_);
-        keys.forEach(function(key){
-            result.push(json_1_[key]);
-        });
-        return result;
-      }
-  
-      let json_1;
-  
-      const [users, setUsers] = useState([]);
+    console.log(JSON.stringify(props));
 
-      const [commentArray, setCommentArray] = useState([]);
-  
-      useEffect(() => {
-          let url = 'https://startechies.000webhostapp.com/server/podcast_scripts/fetch_podcast_comments.php'+'?podcast_id='+props.podcast_id_comment;
-          //console.log("URL LINK = ", url)
-          fetch(url)
-          .then(res => res.json())
-          .then((out) => {
-            json_1 = JSON.stringify(out);
-            const practice_array = [];
-            const  jsonParsedArray = JSON.parse(json_1);
-            
-            for ( var key in jsonParsedArray) {
-              if(jsonParsedArray[key]instanceof Object){
-                practice_array.push(jsonParsedArray[key]);
-              }
+    const [commentArray, setCommentArray] = useState([])
+
+    useEffect(() => {
+        const fetchComments = async () => {
+            setCommentArray([]);
+            try {
+                const response = await axios.get(COMMENT_URL,{params:{podcast_id: props.podcast_id_comment}});
+                if ((response?.data === 'no_comments')){
+                    setCommentArray([]);
+                } else {
+                    let d = response?.data;
+                    for (let i=0; i<d.length;i++){
+                        let temp = new CommentObject(d[i].Podcast_Comment_ID,d[i].EndUser_Username ,d[i].Comment_Body);
+                        setCommentArray(commentArray => [...commentArray,temp]);
+                    }                    
+                }
+            } catch (err) {
+                console.log('No server response');
             }
-  
-            if(practice_array.length != 0){
-              setUsers(practice_array);
-            }
-          })
-          .catch(err => { throw err });
-      }, []);
-      
-      const total_practice_array = [];
-      for (var i = 0; i < users.length; i++){
-          total_practice_array.push(json2array(users[i]));
-      }
-  
-      const array_json = total_practice_array;
-  
-      function createComment(array){
-
-        if (array.length == 0){
-          return;
         }
-        else{
-          var final_array = [];
-  
-          for (var i = 0; i < array.length; i++){
-            const new_array = array[i];
-
-            final_array.push(
-            <CommentByUser 
-              user_posted = {new_array[9]}
-              comment = {new_array[1]}
-            />
-            )
-          }
-          return(final_array);
-        }
-      }
+        fetchComments();
+    },[])
 
     return (
-      <>
-        <CreateComment podcast_id = {props.podcast_id_comment}/> 
-          <div className="commentScrollBox">
-              
-              {createComment(array_json)}
-          </div>
-      </>
+    <>
+        <div className="utility-bar">
+            <div className="utility-bar-add-comment">
+                <CreateComment podcast_id = {props.podcast_id_comment}/> 
+            </div>
+            <div className="utility-bar-like">
+                <LikeComponent podcast_id = {props.podcast_id_comment} likes={props.likes}/>
+            </div>
+        </div>
+            <div className="commentScrollBox">
+                <ul>
+                    {commentArray.map((comment)=>{
+                        return(
+                            <li key={comment.id}>
+                                <CommentByUser user_posted={comment.name} comment={comment.body}/>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+    </>
     )
-    
-  }
+}
 
 export default CommentComponent

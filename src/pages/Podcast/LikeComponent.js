@@ -1,50 +1,74 @@
 import React, {useState, useEffect, useRef, useContext} from 'react'
 import axios from '../../api/axios';
 import { AuthContext } from '../../api/AuthProvider';
+import * as AiIcons from 'react-icons/ai';
+import './Podcast.css';
 
-
-const REGISTER_URL = '/podcast_scripts/like_unlike_podcast.php'; //link to database
-
+const LIKES_URL = '/podcast_scripts/like_unlike_podcast.php'; //link to database
+const LIKED_BEFORE_URL = '/podcast_scripts/liked_before.php'; //link to liked_before php file
 
 const LikeComponent = (props) => {
-    const [state,dispatch]  = useContext(AuthContext); //change state 
-    const [success, setSuccess] = useState(false); //maybe button changes colour - in css
-    const [errMsg, setErrMsg] = useState('');
 
-    const [likes, setLikes] = useState(props.podcast_likes_1);
-    const [likeState, setLikesStates] = useState(false);
+    const [state] = useContext(AuthContext);
 
-    useEffect(() => {
-        setErrMsg('');
-    }, [])
+    const [likes, setLikes] = useState((props.likes));
+    const [likeState, setLikeState] = useState(false);
 
-    const handleSubmit = async (e) => { //wehn someone presses submit on the form
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // prevents button hack
 
-        //Axios - speaks to ther server
-        try {                                                     //database_variable ; my_variable
-            const response = await axios.get(REGISTER_URL,{params:{ podcast_id: props.podcast_id_1, username: state.id}});
-            setSuccess(true);
-            setLikes(response?.data?.podcast_likes);
+        console.log(JSON.stringify(props));
+        try {                                      
+            const response = await axios.get(LIKES_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
+            setLikes(response?.data?.podcast_no_likes);
+            console.log('run');
+            if (response?.data?.like_response === true){
+                setLikeState(true);
+            }
+            if (response?.data?.like_response === false){
+                setLikeState(false);
+            }
+            console.log(JSON.stringify(response?.data));
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else {
-                setErrMsg('Registration Failed')
+                console.log('No Server Response');
             }
         }
-
-        console.log("NUMBER OF LIKES = ", likes);
     }
-    return (
-        <>
-           
-        <form onSubmit={handleSubmit}>
-            <button>Sign Up = {likes}</button>
-        </form>
-            
-        </>
+
+    useEffect(() => {
+        const handleLikes = async () => {
+            try {
+                const response = await axios.get(LIKED_BEFORE_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
+                let d = response?.data;
+                if (d === "liked"){
+                    setLikeState(true);
+                }
+                if (d === "not_liked"){
+                    setLikeState(false);
+                }
+            } catch (err) {
+                if (!err?.response) {
+                    console.log('No Server Response');
+                }
+            }
+        }
+        handleLikes();
+    }, [])
+
+    return(
+        <div className='like-outer'>
+            <button onClick={handleSubmit} className='like-button'>
+                <div className='like-inner'>
+                    <div className={likeState ? 'likes active' : 'likes'}>
+                        <AiIcons.AiFillHeart/>
+                    </div>
+                    <div className='like-text'>
+                        {likes}
+                    </div>
+                </div>
+            </button>
+        </div>
     )
 }
 

@@ -15,49 +15,47 @@ const LIKED_BEFORE_URL = '/podcast_scripts/liked_before.php'; //link to liked_be
 function Podcast(props) {
     const [state] = useContext(AuthContext);
 
-    const [likes, setLikes] = useState((props.podcast_likes));
-    const [likeState, setLikeState] = useState(false);
+    // const [likes, setLikes] = useState((props.podcast_likes));
+    // const [likeState, setLikeState] = useState(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {                                      
-            const response = await axios.get(LIKES_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
-            setLikes(response?.data?.podcast_no_likes);
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {                                      
+    //         const response = await axios.get(LIKES_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
+    //         setLikes(response?.data?.podcast_no_likes);
 
-            if (response?.data?.like_response === true){
-                setLikeState(true);
-            }
-            if (response?.data?.like_response === false){
-                setLikeState(false);
-            }
-        } catch (err) {
-            if (!err?.response) {
-                console.log('No Server Response');
-            }
-        }
-    }
+    //         if (response?.data?.like_response === true){
+    //             setLikeState(true);
+    //         }
+    //         if (response?.data?.like_response === false){
+    //             setLikeState(false);
+    //         }
+    //     } catch (err) {
+    //         if (!err?.response) {
+    //             console.log('No Server Response');
+    //         }
+    //     }
+    // }
 
-    useEffect(() => {
-        const handleLikes = async () => {
-            try {
-                const response = await axios.get(LIKED_BEFORE_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
-                var final_response;
-                console.log(JSON.stringify(response?.data));
-                let d = response?.data;
-                if (d === "liked"){
-                    setLikeState(true);
-                }
-                if (d === "not_liked"){
-                    setLikeState(false);
-                }
-            } catch (err) {
-                if (!err?.response) {
-                    console.log('No Server Response');
-                }
-            }
-        }
-        handleLikes();
-    }, [])
+    // useEffect(() => {
+    //     const handleLikes = async () => {
+    //         try {
+    //             const response = await axios.get(LIKED_BEFORE_URL,{params:{ podcast_id: props.podcast_id, user_id: state.id}});
+    //             let d = response?.data;
+    //             if (d === "liked"){
+    //                 setLikeState(true);
+    //             }
+    //             if (d === "not_liked"){
+    //                 setLikeState(false);
+    //             }
+    //         } catch (err) {
+    //             if (!err?.response) {
+    //                 console.log('No Server Response');
+    //             }
+    //         }
+    //     }
+    //     handleLikes();
+    // }, [])
 
     return(
         <div className="podcastOuter bg-dark" style={ { backgroundImage: `url(${props.podcast_back_image})`}} >
@@ -76,15 +74,17 @@ function Podcast(props) {
                 </span>
             </div>
             <AudioComponent audio_url={props.podcast_audio}/>
-            <button onClick={handleSubmit}>
+            {/* <button onClick={handleSubmit}>
                 <div className={likeState ? 'likes active' : 'likes'}>
                     <AiIcons.AiFillHeart size={25}/>
                 </div>
                 <span style={{fontSize: 28}}>
                     {likes}
                 </span>
-            </button>
-            <CommentComponent podcast_id_comment = {props.podcast_id}/>
+            </button> */}
+            <div className="comment-outer">
+                <CommentComponent podcast_id_comment = {props.podcast_id} likes = {props.podcast_likes}/>
+            </div>
         </div>
     )
 }

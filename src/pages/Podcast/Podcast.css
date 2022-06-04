@@ -82,7 +82,7 @@ button {
 }
 
 .likes.active {
-    color: #ff69b4;
+    color: red;
     transition: 0ms;
 }
 
@@ -91,4 +91,34 @@ button {
 }
 .false{
     color: yellow;
+}
+
+.comment-outer{
+    margin-top: 40px;
+}
+
+.like-outer {
+    padding: 0px;
+    margin: 0px;
+}
+
+.like-inner{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+button.like-button{
+    margin: 0;
+    width: 100%;
+    border-radius: 0px;
+    padding: 0;
+    background-color: transparent;
+}
+
+.like-text{
+    margin-top: 2px;
+    color: white;
+    margin-left: 1px;
 }

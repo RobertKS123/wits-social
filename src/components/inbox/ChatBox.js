@@ -29,7 +29,6 @@ const ChatBox = (props) => {
             <div onClick={handleChange}>
                 <div className="chat-inner">
                     <div>
-
                         <img src={chat.img} alt='pf' className="chat-pf-img"/>
                     </div>
                     <div className="chat-username">

@@ -7,3 +7,14 @@
     /* padding-top: 16px;
      */
 }
+
+.utility-bar{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.utility-bar-like{
+    margin-top: 0px;
+}
