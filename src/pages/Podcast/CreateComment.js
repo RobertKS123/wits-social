@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, location, parent, useContext, } fro
 import './CreateComment.css';
 import * as BsIcons from 'react-icons/bs';
 import * as AiIcons from 'react-icons/ai';
+import * as BiIcons from "react-icons/bi";
 import { AuthContext } from "../../api/AuthProvider";
 import axios from '../../api/axios';
 import CommentByUser from "./CommentByUser";
@@ -38,38 +39,38 @@ function CreateComment(props) {
         setComments('');
 
         
-    } 
-  
+    }
     return(
-      
-          <div className="Create-Comment"> 
+        <div className="create-comment"> 
             <form onSubmit={handleSubmit}>
-                <div className='comment_input_box'>
-                    <div className='input-container-comment'> 
-                        <AiIcons.AiOutlineComment className='input-icon_c' size={25}/>
+                <div className="create-comment-inner">
+                    <div className="create-comment-icon">
+                        <AiIcons.AiOutlineComment/>
+                    </div>
+                    <div className='create-comment-input'>
                         <input
                             type="text"
                             id="comments"
-                            placeholder='Comment'
+                            placeholder='Add a comment...'
                             autoComplete="off"
                             onChange={(e) => setComments(e.target.value)}
                             value={comment}
                             required
                         />
                     </div>
-                </div>
-                <div className='button_1'>
-                    <button style = {{fontSize: 10}} >Comment</button>
-                    {/* style = {{display: inline}} */}
-                </div>
-                
-                
+                    <div className='create-comment-button-outer'>
+                        <button className='create-comment-button'>
+                            <div className='create-comment-button-icon'>
+                                <AiIcons.AiOutlineSend />
+                            </div>
+                        </button>
+                    </div>
+                </div>            
             </form>
-          </div>
+        </div>
     )
 }
-  
 
-  export default CreateComment
+export default CreateComment
 
 

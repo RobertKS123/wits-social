@@ -75,10 +75,13 @@ function CommentComponent(props) {
       }
 
     return (
-        <div className="commentScrollBox">
-            <CreateComment podcast_id = {props.podcast_id_comment}/> 
-            {createComment(array_json)}
-        </div>
+      <>
+        <CreateComment podcast_id = {props.podcast_id_comment}/> 
+          <div className="commentScrollBox">
+              
+              {createComment(array_json)}
+          </div>
+      </>
     )
     
   }

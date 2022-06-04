@@ -42,3 +42,43 @@ form {
     width: 30%;
     color: #015958;
 }
+
+.create-comment{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.create-comment-inner{
+    display: flex;
+    flex-wrap: nowrap;
+    border-bottom: 2px solid white;
+}
+
+.create-comment-icon{
+    color: white;
+    font-size: 22px;
+    margin-right: 5px;
+}
+
+.create-comment-input{
+    width: 100%;
+}
+
+.create-comment-button-outer{
+    width: 30px;
+}
+
+button.create-comment-button{
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    width: 100%;
+    border-radius: 0px;
+    height: 100%;
+    background-color: transparent;
+}
+
+.create-comment-button-icon{
+    color: white;
+    font-size: 22px;
+}
