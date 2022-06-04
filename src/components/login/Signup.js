@@ -117,7 +117,7 @@ const Signup = () => {
                     <form onSubmit={handleSubmit}>
                         <div className='input-container'>
                             <BsIcons.BsFillPersonFill className='input-icon'/>
-                            <input
+                            <input 
                                 type="text"
                                 id="username"
                                 placeholder='User Name'

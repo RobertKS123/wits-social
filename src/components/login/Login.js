@@ -74,7 +74,7 @@ const Login = () => {
                     <div className='input-container'>
                         <BsIcons.BsFillPersonFill className='input-icon'/>
                         <input
-                            type="text"
+                            type="email"
                             id="email"
                             placeholder='Email Adress'
                             ref={userRef}

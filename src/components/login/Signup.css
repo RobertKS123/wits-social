@@ -95,12 +95,13 @@ button {
 
 button {
     padding: 0.5rem;
+    background-color: #023535;
 }
 
 .instructions {
     font-size: 0.75rem;
     border-radius: 0.5rem;
-    background: #000;
+    background: #015958;
     color: #fff;
     padding: 0.25rem;
     position: relative;
@@ -151,4 +152,13 @@ button {
 
 ::placeholder{
     color: white;
+}
+
+#username{
+    font-size: 22px;
+    padding: 0.25rem;
+    background-color: #0CABA8;
+    border-style: none;
+    color: white;
+    width: 70%;
 }
