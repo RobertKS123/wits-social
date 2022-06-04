@@ -149,9 +149,13 @@ const Chat = () => {
     return(
         <div>
             <div className='screen-top'>
-                <Link to='/inbox'className='button-back-container'>
-                    <MdIcons.MdOutlineArrowBackIos className='button-back'/>
-                </Link>
+                <div className='button-back-container'>
+                    <Link to='/inbox'>
+                        <div className='button-back'>
+                            <MdIcons.MdOutlineArrowBackIos />
+                        </div>
+                    </Link>
+                </div>
                 <img src={chatData.img} alt='profile picture' className='chat-img'/>
                 <p className='chat-username'>{chatData.username}</p>
             </div>

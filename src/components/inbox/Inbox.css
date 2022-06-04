@@ -21,14 +21,10 @@
 .search-bar-inner {
     display: flex;
     flex-wrap: nowrap;
+    margin-top: 10px;
     width: 100%;
     margin-bottom: 12px;
     border-bottom: 2px solid black;
-}
-
-form.search-form {
-    margin: 0;
-    padding: 0;
 }
 
 .search-input {
@@ -45,13 +41,6 @@ form.search-form {
     margin-right: 0;
 }
 
-.search-button {
-    font-size: 30px;
-    margin-top: 5px;
-    margin-bottom: 0px;
-    height: 12px;
-}
-
 input[type='text'] {
     font-size: 18px;
     background-color: transparent;
@@ -61,19 +50,41 @@ input[type='text'] {
 .search-button-icon {
     margin: 0px;
     padding: 0px;
+    border-radius: 0;
 }
 
-.search-back-button{
+button.search-back-button{
     margin-top: auto;
     margin-bottom: auto;
+    background-color: transparent;
 }
 
-.button-back {
-    font-size: 32;
+button.search-button{
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    width: 50px;
+    background-color: transparent;
 }
 
 .default-message{
     margin-left: 5px;
+}
+
+.search-back-button-outer{
+    margin: 0;
+    padding: 0;
+}
+
+.button-back{
+    color: white;
+    font-size: 32;
+    justify-content: center;
+    padding-left: 0;
+    margin-right: 8px;
 }
 
 /* Chats */

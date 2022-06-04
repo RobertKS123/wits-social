@@ -8,7 +8,7 @@ import Login from './components/login/Login';
 import BottomNavbar from './components/bottomNavbar/BottomNavbar';
 import Upload from './components/upload/Upload';
 import Chat from './components/inbox/messageChat/Chat';
-import TopForYou from './pages/home/TopForYou/TopForYou';
+import Inbox from './components/inbox/Inbox';
 import LandingPage from './pages/landingPage/LandingPage';
 import Trending from './pages/trending/Trending';
 

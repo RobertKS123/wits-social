@@ -19,18 +19,22 @@
     margin: 5px;
 }
 
-a, a:visited{
-    color: black;
-    display: inline;
-    font-size: 1rem;
-    padding: 10px;
-}
-
 p.chat-username {
     color: white;
     margin-top: 10px;
     margin-left: 5px;
     font-size: 25px;
+}
+
+.button-back-container{
+    margin-top: 10px;
+}
+
+.button-back{
+    color: black;
+    display: inline;
+    font-size: 1rem;
+    padding: 10px;
 }
 
 /* Chat body */
@@ -137,7 +141,7 @@ p.chat-username {
     width: 80%;
 }
 
-button{
+button.button-message{
     background-color: transparent;
     color: black;
     width: 10vw;

@@ -112,9 +112,11 @@ const Inbox = () => {
     return(
         <>
             <div className='search-bar'>
-                <div className='search-back-button'>
-                    <button onClick={() => setRefresh(false)}>
-                        <MdIcons.MdOutlineArrowBackIos className='button-back'/>
+                <div className='search-back-button-outer'>
+                    <button onClick={() => setRefresh(false)} className='search-back-button'>
+                        <div className='button-back'>
+                            <MdIcons.MdOutlineArrowBackIos />
+                        </div>
                     </button>
                 </div>
                 <form onSubmit={handleSubmit} className='search-form'>
@@ -133,13 +135,14 @@ const Inbox = () => {
                                     value={search}
                                 />
                             </div>
-                        <div className='search-button'>
-                            <button disabled={!validSearch}><FiIcons.FiSend className='search-button-icon'/></button>
-                        </div>
+                            <div className='search-button-outer'>
+                                <button disabled={!validSearch} className='search-button'>
+                                    <FiIcons.FiSend className='search-button-icon'/>    
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </form>
-                
+                </form>                
             </div>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
             {empty ? (

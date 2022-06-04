@@ -67,7 +67,7 @@ function Podcast(props) {
           setLikesState(false);
         }
       })
-     }, []);
+    }, []);
 
 
   //const url = "https://startechies.000webhostapp.com/end_users/banners/banner_sample_1.png";    
@@ -79,13 +79,12 @@ function Podcast(props) {
         <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
         
           <div className="podcastTitle">
-          <span class="badge badge-pill badge-light podcastTitle">{props.podcast_title}</span>
+          <span className="badge badge-pill badge-light podcastTitle">{props.podcast_title}</span>
           </div>
           {/* <span className="badge badge-dark">{props.podcast_title}</span>  */}
             <br/>
             <div className="podcastDescription"><span class="badge badge-primary">{props.podcast_description}</span></div>
             <div className="podcastCreator"><span className="badge badge-dark">Uploaded by {props.podcast_username}</span></div>
-                             
           
           <AudioComponent audio_url={props.podcast_audio}/>
           
@@ -107,15 +106,14 @@ function Podcast(props) {
         <img src={props.podcast_profile_image} className="profilePic img-thumbnail mx-auto d-block"/>
         
         <div className="podcastTitle">
-          <span class="badge badge-pill badge-light podcastTitle">{props.podcast_title}</span>
+        {/* <span>{props.podcast_title}</span> */}
+        <span className="badge badge-pill badge-light podcastTitle">{props.podcast_title}</span>
           </div>
           
           {/* <span className="badge badge-dark">{props.podcast_title}</span>  */}
             <br/>
             <div className="podcastDescription"><span class="badge badge-primary">{props.podcast_description}</span></div>
-            <div className="podcastCreator"><span className="badge badge-dark">Uploaded by {props.podcast_username}</span></div>
-                             
-          
+            <div className="podcastCreator"><span className="badge badge-dark">Uploaded by {props.podcast_username}</span></div>          
           <AudioComponent audio_url={props.podcast_audio}/>
           
           <button className={likeState ? 'likes active' : 'likes'} onClick={handleSubmit}>
