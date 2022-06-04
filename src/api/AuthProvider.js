@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { LOGIN, CHAT } from "./Constants"
+import { LOGIN, CHAT, LOGOUT } from "./Constants"
 
 export const AuthContext = createContext();
 
@@ -23,6 +23,12 @@ function reducer(state,action){
                 id : state.id,
                 nav : true,
                 chat : action.payload,
+            }
+        case LOGOUT:
+            return {
+                id : action.payload,
+                nav : false,
+                chat : 0,
             }
         default:
             throw new Error();
