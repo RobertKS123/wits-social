@@ -18,16 +18,16 @@ function App() {
 return (
 	<>  		
 		<Router>
-		<Route path='/' exact  component={Inbox}/>
-		<Route path='/chat' exact  component={Chat}/>
+		
 		<BottomNavbar />
-		<Route path='/L' exact component={LandingPage} />
+		<Route path='/' exact component={LandingPage} />
 		<Route path='/signup' exact  component={Signup}/>
 		<Route path='/login' exact  component={Login}/>
 		<Route path='/home' exact component={Home}/>
-		{/* <Route path='/trending' exact component={Treanding}/>*/}
+		{/* <Route path='/trending' exact component={Treanding}/>*/}		
 		<Route path='/create' exact  component={Upload}/>
-		{<Route path ='/inbox' exact component={Inbox}/> }
+		<Route path ='/inbox' exact component={Inbox}/>
+		<Route path='/chat' exact  component={Chat}/>
 		<Route path='/account' exact component={Account}/>
 		</Router>     
 	</>

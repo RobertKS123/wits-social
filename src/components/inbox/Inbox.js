@@ -37,7 +37,7 @@ const Inbox = () => {
         setEmpty(true);
         const fetchData = async () => {
             try {
-                const response = await axios.get(INBOX_URL,{params:{logged_in_UserID: 31}}); //change to state.id
+                const response = await axios.get(INBOX_URL,{params:{logged_in_UserID: state.id}}); //change to state.id
                 if (response?.data === 301){ //no chats
                     setEmpty(true);
                     setDefaultMessage('search a user and start chatting...');
@@ -84,11 +84,11 @@ const Inbox = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(SEARCH_URL,{params:{username_wildcard:search,logged_in_user_id:31}}); //charge to loged in user
+            const response = await axios.get(SEARCH_URL,{params:{username_wildcard:search,logged_in_user_id:state.id}}); //charge to loged in user
             if (response?.data === 301) { //no users found
                 setDefaultMessage('No users Found');
             } else {
-                setRefresh(false);
+                //setRefresh(false);
                 setChats([]);
                 let u = response?.data.logged_in_user_info;
                 let tempUser = new ChatContact(u.EndUser_ID, u.EndUser_Username, u.EndUser_ProfilePicLink);//chage to state.id
@@ -113,7 +113,7 @@ const Inbox = () => {
         <>
             <div className='search-bar'>
                 <div className='search-back-button'>
-                    <button onClick={() => setRefresh(true)}>
+                    <button onClick={() => setRefresh(false)}>
                         <MdIcons.MdOutlineArrowBackIos className='button-back'/>
                     </button>
                 </div>

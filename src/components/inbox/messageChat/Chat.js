@@ -60,7 +60,7 @@ const Chat = () => {
             let img1;
             let img2;
             try {
-                const response = await axios.get(USER_DATA_URL,{params:{user_id : 31}});
+                const response = await axios.get(USER_DATA_URL,{params:{user_id : state.id}});
                     let d = response?.data[0];
                     let tempUser = new ChatContact(d.EndUser_ID, d.EndUser_Username, d.EndUser_ProfilePicLink);//chage to state.id
                     img1 = d.EndUser_ProfilePicLink;
@@ -73,7 +73,7 @@ const Chat = () => {
                 }
             }
             try {
-                const response1 = await axios.get(USER_DATA_URL,{params:{user_id : 39}});
+                const response1 = await axios.get(USER_DATA_URL,{params:{user_id : state.chat}});
                     let d1 = response1?.data[0];
                     let tempUser1 = new ChatContact(d1.EndUser_ID, d1.EndUser_Username, d1.EndUser_ProfilePicLink);//chage to state.id
                     img2 = d1.EndUser_ProfilePicLink;               
@@ -86,7 +86,7 @@ const Chat = () => {
                 }
             }
             try {
-                response2 = await axios.get(MESSAGES_URL,{params:{logged_in_user_id : 31, chatting_with_id : 39}});
+                response2 = await axios.get(MESSAGES_URL,{params:{logged_in_user_id : state.id, chatting_with_id : state.chat}});
             } catch (e) {
                 if (!e?.response) {
                     setErrMsg('No Server Response3');
@@ -100,7 +100,7 @@ const Chat = () => {
                     let tempMessage = d2[i].Message_Body;
                     let tempSrc = true;
                     let tempImg = img1;
-                    if (d2[i].Sender_UserID !== 31){tempSrc = false; tempImg = img2;}; //state.id
+                    if (d2[i].Sender_UserID !== state.id){tempSrc = false; tempImg = img2;}; //state.id
                     let temp = new messageObject(tempId, tempSrc, tempMessage, tempImg);
                     setMessageArr(messageArr => [...messageArr,temp]);
                 }
@@ -113,7 +113,7 @@ const Chat = () => {
         e.preventDefault();
         try {
             //const response = await axios.get(SEND_URL,{params:{sender_user_id : props.user.id, recipient_user_id : props.chat.id, message_body : message}});
-            const response = await axios.get(SEND_URL,{params:{sender_user_id : 31, recipient_user_id : 39, message_body : message}});
+            const response = await axios.get(SEND_URL,{params:{sender_user_id : state.id, recipient_user_id : state.chat, message_body : message}});
 
             console.log(JSON.stringify(response?.data));
 
@@ -129,7 +129,7 @@ const Chat = () => {
                 //if (l.Sender_UserID !== state.id){tempSrc = false; tempImg = props.chat.img};
                 let tempImg = userData.img;
                 console.log(userData.img);
-                if (l.Sender_UserID !== 31){tempSrc = false; tempImg = chatData.img};
+                if (l.Sender_UserID !== state.id){tempSrc = false; tempImg = chatData.img};
                 let temp = new messageObject(tempId, tempSrc, tempMessage, tempImg);
 
                 setMessageArr(messageArr => [...messageArr,temp]);
@@ -149,7 +149,7 @@ const Chat = () => {
     return(
         <div>
             <div className='screen-top'>
-                <Link to='/'className='button-back-container'>
+                <Link to='/inbox'className='button-back-container'>
                     <MdIcons.MdOutlineArrowBackIos className='button-back'/>
                 </Link>
                 <img src={chatData.img} alt='profile picture' className='chat-img'/>
